@@ -70,3 +70,4 @@ stylus:
 ## Docs: http://hexo.io/docs/deployment.html
 deploy:
   type:
+# repo: git@github.com:robinroar/robinroar.github.io
