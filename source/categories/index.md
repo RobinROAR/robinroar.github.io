@@ -1,0 +1,2 @@
+layout: categories
+title: categories
