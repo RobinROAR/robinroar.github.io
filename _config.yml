@@ -3,14 +3,16 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Lion's Pride Inn
-subtitle: Robin's blog  
+title: Lion's Pride Inn   -robin's blog
+subtitle: 不要总奢望一蹴而就，多一点耐心；即使有幸一次成功，也应感谢上帝对你的恩赐  
 description: Thinking，Inspiring，Recording
 author: Robin Zheng  
 email: zrb915@live.com
 language: zh-CN 
 timezone:
 
+plugins:
+- hexo-generator-feed
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: http://robinzheng.com
