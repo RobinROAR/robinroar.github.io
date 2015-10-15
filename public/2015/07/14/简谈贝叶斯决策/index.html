@@ -1,0 +1,609 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>简谈贝叶斯决策 | Lion&#39;s Pride Inn   -robin&#39;s blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Robin Zheng">
+    
+
+    
+    <meta name="description" content="贝叶斯决策, 一种常用的分类方法，复杂度低，准确度好，可以和多种分类方法结合。最高的理论正确率令人神往（上自动化所模式识别课中多次强调）。写一写学习贝叶斯方法中的几点理解，一个简单脉络而已，方便回顾，与大家分享。
+
+1. 先验概率与后验概率两个概念：
+
+先验概率： 事情还没有发生，要求这件事情发生的可能性的大小。如P(A).
+后验概率： 事情已经发生，要求这件事情发生的原因是由某个因素引起的可能性">
+<meta property="og:type" content="article">
+<meta property="og:title" content="简谈贝叶斯决策">
+<meta property="og:url" content="http://robinzheng.com/2015/07/14/简谈贝叶斯决策/index.html">
+<meta property="og:site_name" content="Lion's Pride Inn   -robin's blog">
+<meta property="og:description" content="贝叶斯决策, 一种常用的分类方法，复杂度低，准确度好，可以和多种分类方法结合。最高的理论正确率令人神往（上自动化所模式识别课中多次强调）。写一写学习贝叶斯方法中的几点理解，一个简单脉络而已，方便回顾，与大家分享。
+
+1. 先验概率与后验概率两个概念：
+
+先验概率： 事情还没有发生，要求这件事情发生的可能性的大小。如P(A).
+后验概率： 事情已经发生，要求这件事情发生的原因是由某个因素引起的可能性">
+<meta property="og:updated_time" content="2015-08-24T08:49:35.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="简谈贝叶斯决策">
+<meta name="twitter:description" content="贝叶斯决策, 一种常用的分类方法，复杂度低，准确度好，可以和多种分类方法结合。最高的理论正确率令人神往（上自动化所模式识别课中多次强调）。写一写学习贝叶斯方法中的几点理解，一个简单脉络而已，方便回顾，与大家分享。
+
+1. 先验概率与后验概率两个概念：
+
+先验概率： 事情还没有发生，要求这件事情发生的可能性的大小。如P(A).
+后验概率： 事情已经发生，要求这件事情发生的原因是由某个因素引起的可能性">
+<meta name="twitter:creator" content="@RobinCountZZZ">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Lion&#39;s Pride Inn   -robin&#39;s blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="Lion&#39;s Pride Inn   -robin&#39;s blog" title="Lion&#39;s Pride Inn   -robin&#39;s blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Lion&#39;s Pride Inn   -robin&#39;s blog">Lion&#39;s Pride Inn   -robin&#39;s blog</a></h1>
+				<h2 class="blog-motto">即使有幸一次成功，也应感谢上帝对你的恩赐</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/resume">我的简历</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:robinzheng.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/07/14/简谈贝叶斯决策/" title="简谈贝叶斯决策" itemprop="url">简谈贝叶斯决策</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Robin Zheng" target="_blank" itemprop="author">Robin Zheng</a>
+		
+  <p class="article-time">
+    <time datetime="2015-07-14T13:44:57.000Z" itemprop="datePublished"> 发表于 2015-07-14</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-_先验概率与后验概率"><span class="toc-number">1.</span> <span class="toc-text">1. 先验概率与后验概率</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-_贝叶斯公式"><span class="toc-number">2.</span> <span class="toc-text">2. 贝叶斯公式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-_例子"><span class="toc-number">3.</span> <span class="toc-text">3. 例子</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-_一种简单实现：朴素贝叶斯"><span class="toc-number">4.</span> <span class="toc-text">4. 一种简单实现：朴素贝叶斯</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#朴素贝叶斯的核心假设："><span class="toc-number">4.0.1.</span> <span class="toc-text">朴素贝叶斯的核心假设：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-_分类准则"><span class="toc-number">5.</span> <span class="toc-text">5. 分类准则</span></a></li></ol>
+		
+		</div>
+		
+		<p><strong>贝叶斯决策</strong>, 一种常用的分类方法，复杂度低，准确度好，可以和多种分类方法结合。最高的理论正确率令人神往（上自动化所模式识别课中多次强调）。<br>写一写学习贝叶斯方法中的几点理解，一个简单脉络而已，方便回顾，与大家分享。</p>
+<hr>
+<h2 id="1-_先验概率与后验概率">1. 先验概率与后验概率</h2><p>两个概念：</p>
+<ul>
+<li><code>先验概率</code>： 事情还没有发生，要求这件事情发生的可能性的大小。如P(A).</li>
+<li><code>后验概率</code>： 事情已经发生，要求这件事情发生的原因<code>是由某个因素引起的</code>可能性的大小，是后验概率. </li>
+</ul>
+<p>所以我们可以使用贝叶斯公式求后验概率，进而达到分类的目的。</p>
+<h2 id="2-_贝叶斯公式">2. 贝叶斯公式</h2><p>$$ P(F_j|E)= \dfrac{P(F_jE)}{P(E)} =  \dfrac{P(E|F_j)P(F_j)}{ \displaystyle{\sum_{i=1}^{n} }P(E|F_i)P(F_i) } $$</p>
+<p>两个核心：</p>
+<ul>
+<li><p><strong>推导</strong>：条件概率公式。分解中间步骤分子，我们得出结果$P(F_j|E) \cdot P(E)= P(F_jE) =   P(E|F_j) \cdot P(F_j)$.   </p>
+</li>
+<li><p><strong>应用</strong>：用于分类问题。分解中间步骤分母$P(E) = \displaystyle{\sum_{i=1}^{n} }P(E|F_i)P(F_i）$ ，每个$F_i$代表一个类别。</p>
+</li>
+</ul>
+<p>扯点零碎，条件概率公式对任意两个事件都是存在的，当两事件独立(即$P(EF) = P(E)P(F)$)时，$P(E|F) = P(EF)/P(F) = P(E)$.</p>
+<h2 id="3-_例子">3. 例子</h2><p>看过很多讲解贝叶斯公式的例子，下面这个很好:</p>
+<blockquote>
+<p>一份信件等可能的在存在三个不同的文件夹中的任意一个。假设信件实际在文件夹$i$中$(i = 1,2,3)$而你经过对文件夹$i$的快速翻阅发现信件的概率记为$a_i$，问题是，假定你查看了文件夹1且没有发现此信，问信件在文件夹1中的概率是多少？<br>                                                              ——<a href="http://book.douban.com/subject/2309401/" target="_blank" rel="external">《应用随机过程：概率模型导论》</a></p>
+</blockquote>
+<p><strong>解</strong>： 以$F_i(i = 1,2,3)$为信在文件中$i$中的事件<code>（先验概率）</code>，E是通过对文件夹1搜索而为看到信这个事件，我们求$P(F_1|E)$<code>(后验概率)</code>，通过贝叶斯公式：<br>$$    P(F_1|E)=  \dfrac{P(E|F_1)P(F_1)}{ \displaystyle{\sum_{i=1}^{3} }P(E|F_i)P(F_i) } = \dfrac{(1-a_1) \frac{1}{3}}{ (1-a_1) \frac{1}{3}+\frac{1}{3}+\frac{1}{3}} = \dfrac{1-a_1}{3-a_1}$$</p>
+<p>把握两个重点：</p>
+<pre><code>-<span class="ruby"> 对问题中事件的假设
+</span>-<span class="ruby"> 对整体事件空间(分母)的划分</span>
+</code></pre><h2 id="4-_一种简单实现：朴素贝叶斯">4. 一种简单实现：朴素贝叶斯</h2><p>贝叶斯思想只是一个框架，可结合许多假设与分布。<br>朴素思分类就是一个通过先验概率求后验概率的方法，然后将实例点分到后验概率最大的类。就像街上有一个黑人，我们预测黑人来自非洲，为什么呢？因为黑人中非洲人的比率最高。</p>
+<h4 id="朴素贝叶斯的核心假设：">朴素贝叶斯的核心假设：</h4><ol>
+<li><p>特征之间相互独立 ：这个“朴素”一词的来源。假设体现在向量的特征之间。所以有<br>$$P(x|y_i)P(y_i)=P(a_1|y_i)P(a_2|y_i)…P(a_m|y_i)P(y_i)=P(y_i)\prod^m_{j=1}P(a_j|y_i)$$</p>
+<ul>
+<li>$y_i$为每一个类别，$a_i$ 为样本X的特征的每一维分量</li>
+</ul>
+</li>
+<li><p>每个特征同等重要。</p>
+</li>
+</ol>
+<h2 id="5-_分类准则">5. 分类准则</h2><p>将输入向量分到后验概率最大的类，这就是<code>分类准则</code>。贝叶斯使用的是<code>最大后验概率准则</code>。<br>在别的分类方法中，我们还用过<code>最小错误率</code>的分类准则，比如基于0-1损失的最小错误率，这两者是一样的。</p>
+<p>设损失函数</p>
+<p>$L(Y,f(X))=$</p>
+<p>\begin{align*}<br>1,Y \not= f(X) \\<br>0, Y= f(X) \\<br>\end{align*}</p>
+<ul>
+<li>期望风险函数为</li>
+</ul>
+<p>\begin{equation*}<br>\begin{aligned}<br>R_e(f(x)) &amp; = E[L(Y, f(x))]\\<br>&amp; =  \iint_{X,Y}L(Y,f(X))P(X,Y)\mathrm{d}x\mathrm{d}y \\<br>&amp;= \iint_{X,Y}L(Y,f(X))P(Y|X)P(X)\mathrm{d}x\mathrm{d}y\\<br>&amp;= \int_{X} (\sum_{k=1}^{k}L(Y= c_k,f(X))P(Y=c_k|X) )P(X)\mathrm{d}x\\<br>&amp;= E_x(\sum_{k=1}^{k}L(Y= c_k,f(X))P(Y=c_k|X) )<br>\end{aligned}<br>\end{equation*}</p>
+<ul>
+<li>为了使期望最小，对$X=x$逐个极小化：</li>
+</ul>
+<p>\begin{equation*}<br>\begin{aligned}<br>f(x)&amp; = \arg\min \limits_{y\in\mathcal{Y}}\sum_{k=1}^{k}L(c_k,y)P(c_k|X=x) \\<br>&amp;=  \arg\min \limits_{y\in\mathcal{Y}}\sum_{k=1}^{k}P(y \not = c_k|X=x) \\<br>&amp;=  \arg\min \limits_{y\in\mathcal{Y}}\sum_{k=1}^{k}(1-P(y  = c_k|X=x) )\\<br>&amp;=  \arg\max \limits_{y\in\mathcal{Y}}P(y = c_k|X = x)<br>\end{aligned}<br>\end{equation*}</p>
+<p>可以看出，这就是<code>最大后验概率准则</code>，也是我们使用贝叶斯决策的分类准则。</p>
+<hr>
+<p>暂时先写这几点，顺带说一句，Hexo上写$\mathrm{\LaTeX}$公式，冲突比较多，还在寻找比较好的解决方法，</p>
+<p>Robin<br>2015.7.10 夜 </p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/技术/">技术</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/分类/">分类</a><a href="/tags/机器学习/">机器学习</a><a href="/tags/贝叶斯/">贝叶斯</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://robinzheng.com/2015/07/14/简谈贝叶斯决策/" data-title="简谈贝叶斯决策 | Lion&#39;s Pride Inn   -robin&#39;s blog" data-tsina="2480620992" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2015/08/13/逻辑回归与计算中的向量化思想/" title="逻辑回归与计算中的向量化思想">
+  <strong>上一篇：</strong><br/>
+  <span>
+  逻辑回归与计算中的向量化思想</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2015/06/22/谈谈Linux的环境变量与启动文件/"  title="谈谈Linux的环境变量与启动文件">
+ <strong>下一篇：</strong><br/> 
+ <span>谈谈Linux的环境变量与启动文件
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2015/07/14/简谈贝叶斯决策/" data-title="简谈贝叶斯决策" data-url="http://robinzheng.com/2015/07/14/简谈贝叶斯决策/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-_先验概率与后验概率"><span class="toc-number">1.</span> <span class="toc-text">1. 先验概率与后验概率</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-_贝叶斯公式"><span class="toc-number">2.</span> <span class="toc-text">2. 贝叶斯公式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-_例子"><span class="toc-number">3.</span> <span class="toc-text">3. 例子</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-_一种简单实现：朴素贝叶斯"><span class="toc-number">4.</span> <span class="toc-text">4. 一种简单实现：朴素贝叶斯</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#朴素贝叶斯的核心假设："><span class="toc-number">4.0.1.</span> <span class="toc-text">朴素贝叶斯的核心假设：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-_分类准则"><span class="toc-number">5.</span> <span class="toc-text">5. 分类准则</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/技术/" title="技术">技术<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/生活/" title="生活">生活<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/分类/" title="分类">分类<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/机器学习/" title="机器学习">机器学习<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/逻辑回归/" title="逻辑回归">逻辑回归<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/判别模型/" title="判别模型">判别模型<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/线性代数/" title="线性代数">线性代数<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/linux/" title="linux">linux<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/环境变量/" title="环境变量">环境变量<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/纪念/" title="纪念">纪念<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/贝叶斯/" title="贝叶斯">贝叶斯<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  
+  <div class="archiveslist">
+    <p class="asidetitle"><a href="/archives">归档</a></p>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">2</span></li></ul>
+  </div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://yantaoblog.info" target="_blank" title="Yantao&#39;s Blog">Yantao&#39;s Blog</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.sdu.edu.cn" target="_blank" title="山东大学">山东大学</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.cnic.cn" target="_blank" title="CNIC">CNIC</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=2480620992&verifier=ada23665&dpc=1"></iframe>
+</div>
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hi, this is Robin. <br/>
+			If you want contact me or share your inspration, touch here-----&gt; .</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2480620992" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/RobinROAR" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		<a href="https://twitter.com/RobinCountZZZ" target="_blank" class="icon-twitter" title="twitter"></a>
+		
+		
+		<a href="https://www.facebook.com/100002783527610" target="_blank" class="icon-facebook" title="facebook"></a>
+		
+		
+		
+		
+		
+		
+		<a href="mailto:zrb915@live.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+		
+		<a href="/about" target="_blank" title="Robin Zheng">Robin Zheng</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#nothing"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"robinzheng"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1255379543'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s23.cnzz.com/z_stat.php%3Fid%3D1255379543' type='text/javascript'%3E%3C/script%3E"));</script>
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

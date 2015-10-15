@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  
+  <title><![CDATA[Lion's Pride Inn   -robin's blog]]></title>
+  <subtitle><![CDATA[即使有幸一次成功，也应感谢上帝对你的恩赐]]></subtitle>
+  <link href="/atom.xml" rel="self"/>
+  <link href="http://robinzheng.com//"/>
+  <updated>2015-08-17T02:59:26.000Z</updated>
+  <id>http://robinzheng.com//</id>
+  
+  <author>
+    <name><![CDATA[Robin Zheng]]></name>
+    <email><![CDATA[zrb915@live.com]]></email>
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[逻辑回归与计算中的向量化思想]]></title>
+    <link href="http://robinzheng.com/2015/08/13/%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92%E4%B8%8E%E8%AE%A1%E7%AE%97%E4%B8%AD%E7%9A%84%E5%90%91%E9%87%8F%E5%8C%96%E6%80%9D%E6%83%B3/"/>
+    <id>http://robinzheng.com/2015/08/13/逻辑回归与计算中的向量化思想/</id>
+    <published>2015-08-13T21:36:33.000Z</published>
+    <updated>2015-08-17T02:59:26.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="引子">引子</h2><ul>
+<li>这部分总结的有点晚了，不过在熟悉机器学习体系和几个其它模型后，再回过头来看逻辑回归，发现从原理到思想都有比较好的理解。</li>
+<li>理论主要参考NG的斯坦福课程和李航老师的《统计学习方法》，代码实现参见《机器学习实战》。</li>
+<li>向量化计算的思想在逻辑回归代码中体现的很好，利用矩阵计算上的便利性来解决复杂的循环过程。但由于《实战》书中的原理推导及其吝惜笔墨（与其简洁优美的代码对比鲜明），这里做一下补充。</li>
+<li>感谢<a href="http://blog.csdn.net/dongtingzhizi/article/details/15962797" target="_blank" rel="external">洞庭之子</a>这篇博客，解决了我的很多疑问，很佩服作者的思路和严谨的推导,但这篇博客中的有些写法不规范，容易引起误解。</li>
+</ul>
+<h2 id="逻辑回归">逻辑回归</h2><h3 id="思想">思想</h3><ul>
+<li><strong>根据数据对分类边界线建立回归公式:</strong> 与感知机乃至SVM大同小异，都是寻找一个<code>超平面</code>将数据集分为两部分。基于如此，逻辑回归一般只能处理两分类问题，同时两个类别线性可分。对于<code>多分类问题</code>，还是老思想，化用二分类（目标类为一类，剩余唯一类），构建多个分类器，寻找概率最大的那个类作为分类结果。</li>
+<li><strong>通过分类函数（sigmoid函数）寻找分类超平面</strong>： 具体sigmoid函数相关的内容下面有详细叙述.</li>
+<li><strong>判别模型的老思路：</strong>假设特征系数$\theta$，构造预测函数 ——&gt; 构造损失函数 ——&gt; 求解最优化问题：寻找使损失函数最小時的特征系数$\theta$ ——&gt; 得到分类器（即超平面）。</li>
+<li><strong>优缺点：</strong> 计算简单，训练分类器后计算量小;准确度有限，容易欠拟合，只针对二分类问题。</li>
+</ul>
+<h3 id="分类函数Sigmoid">分类函数Sigmoid</h3><ul>
+<li>逻辑回归选择<code>近似于阶越函数</code>的Sigmoid函数作为分类函数：<br>$$\sigma(z_i) = \dfrac{1}{1+e^{-z}}，<br>(z_i = \theta_0x_i^{(0)}+\theta_1x_i^{(1)}+..+\theta_nx_i^{(m)} )$$</li>
+<li>函数图像：<img src="http://7xjz3b.com1.z0.glb.clouddn.com/blog4-1.png" alt="sigmod"></li>
+<li>$\theta$为特征系数向量, 每个特征都有一个特征系数$\theta_n$。另外，$x_i^{(j)}$为输入向量$x_i$的第j个分量，</li>
+<li>作用：1. 逻辑回归的分类函数。 2. 将样本映射到0-1区间，进而巧妙地将数据到分界线的距离转化为概率，然后通过最大斯然估计等方法求解，这一些后面会谈到。</li>
+</ul>
+<h3 id="问题求解">问题求解</h3><p>求解的过程这里简单讲讲，具体内容（比如阶梯求导结果等）不在赘述，可以参阅参考博客。<br>判别模型的基本套路：<br><strong>预测函数 ——&gt; 构造损失函数or最大斯然估计求发生概率 ——&gt; 求解最优化问题</strong>：</p>
+<ul>
+<li>1、预测函数：<br>$$h_{\theta}(x)=\sigma(z_i) = \dfrac{1}{1+e^{-z}}，<br>(z_i = \theta_0x_i^{(0)}+\theta_1x_i^{(1)}+..+\theta_nx_i^{(m)} )$$</li>
+</ul>
+<p>sigmoid的函数值可以表示成分类概率：<br>\begin{equation*}<br>\begin{aligned}<br>P(y=1|x,\theta) &amp; = h_\theta(x) \\<br>P(y=0|x,\theta) &amp; = 1-h_\theta(x)<br>\end{aligned}<br>\end{equation*}</p>
+<ul>
+<li>2、通过最大斯然估计求发生概率，同时可构造损失函数：<br>$$<br>P(y|x,\theta)=(h_{\theta}(x))^y(1-h_{\theta}(x))^{1-y}<br>$$<br>取似然函数：
+$$
+L(\theta)  = \prod_{i=1}^nP(y_i|x_i,\theta) = \prod_{i=1}^n (h_{\theta}(x_i))^{y_i}(1-h_{\theta}(x_i))^{1-y_i}
+$$
+
+</li>
+</ul>
+<p>取对数：<br>
+\begin{equation*}
+\begin{aligned}
+l(\theta) & = \log L(\theta) \\
+& =\sum_{i=1}^n(y_i(\log h_{\theta}(x_i)+(1-y_i)\log{(1-h_{\theta}(x_i))}
+\end{aligned}
+\end{equation*}
+<br>到这里，我们就可以用最优化方法求解$l(\theta)$，本例用的是梯度上升法。<br>在斯坦福ML的课程中，取$J(\theta)=-\dfrac{1}{m}l(\theta)$,构建损失函数，然后利用梯度下降法求解$\theta$，本质是完全一样的。</p>
+<ul>
+<li>3、借助梯度上升法求解最优值：
+ \begin{equation*}
+\begin{aligned}
+\theta_j & = \theta_j + \alpha\dfrac{\delta}{\delta\theta_j}J(\theta) \\
+& = \theta_j+\alpha\sum_{i=1}^{n}(y_i - h_{\theta}(x_i))x_i^{(j)}
+\end{aligned}
+\end{equation*}
+($特征维数j = 0...m,、\alpha为学习步长$)
+\begin{equation*}
+\begin{aligned}
+\dfrac{\delta}{\delta\theta_j}J(\theta) & = \sum_{i=1}^n\left[y_i\dfrac{1}{h_\theta(x_i)}\dfrac{\delta}{\delta\theta_j} h_\theta(x_i)-(1-y_i)\dfrac{1}{1-h_\theta(x_i)}\dfrac{\delta}{\delta\theta_j} h_\theta(x_i) \right]   \\\
+& = .....\\
+& = \theta_j+\alpha\sum_{i=1}^{n}(y_i - h_{\theta}(x_i))x_i^{(j)}
+\end{aligned}
+\end{equation*}
+
+这里省去了大部分求偏导的过程，详细的求解步骤，可以参见参考博客。博文虽用的是梯度下降法，但每一步的求偏导数过程是完全一致的。</li>
+</ul>
+<h2 id="计算中的向量化思想">计算中的向量化思想</h2><ul>
+<li>在求解最优化方法時，将数据向量化，用矩阵的方式计算，是一种很好的思想。</li>
+<li>借助numpy等包，使得以前针对单个数值编写的方法，对矩阵也有了很好的支持度。</li>
+<li><p>《机器学习实战》的实现代码中，使用梯度上升法求解$\theta$時，就用了向量化思想，用矩阵乘法代替了循环。但书中直接给出了迭代求$\theta$的公式，缺少了如上节类似的推导，初读还是有些令人费解。</p>
+<h3 id="上节已知求$\theta$每一步的更新过程：">上节已知求$\theta$每一步的更新过程：</h3>
+\begin{equation}
+\begin{aligned}
+\theta_j & = \theta_j + \alpha\dfrac{\delta}{\delta\theta_j}J(\theta) \\\
+& = \theta_j+\alpha\sum_{i=1}^{n}(y_i - h_{\theta}(x_i))x_i^{(j)}
+\end{aligned}
+\end{equation}
+
+</li>
+<li><p>1、首先我们把特征系数$\theta$用m×1的列向量表示。(假设有n个输入向量，特征共有m维,$\theta_0x_0当作常量偏移$)：<br>\begin{equation*}<br>\theta = \begin{bmatrix}<br>\theta_0 \\<br>\theta_1 \\<br>… \\<br>\theta_m<br>\end{bmatrix}<br>\end{equation*}</p>
+</li>
+</ul>
+<p>输入数据用n×m的矩阵表示：<br>\begin{equation*}<br>X = \begin{bmatrix}<br>x_1 \\<br>x_2 \\<br>… \\<br>x_n<br>\end{bmatrix} =<br>\begin{bmatrix}<br>x_1^{(0)},x_1^{(1)}…x_1^{(m)} \\<br>x_2^{(0)},x_2^{(1)}…x_2^{(m)}  \\<br>… \\<br>x_n^{(0)},x_n^{(1)}…x_n^{(m)}<br>\end{bmatrix}<br>\end{equation*}<br>所以$z_n = \theta_0x_n^{(0)}+\theta_1x_n^{(1)}+..+\theta_nx_n^{(m)} $可以用$X\cdot\theta$得出的n×1列向量来表示：<br>\begin{equation*}<br>Z = \begin{bmatrix}<br>\theta_0x_1^{(0)}+\theta_1x_1^{(1)}+…+\theta_mx_1^{(m)} \\<br>\theta_0x_2^{(0)}+\theta_1x_2^{(1)}+…+\theta_mx_2^{(m)}   \\<br>… \\<br>\theta_0x_n^{(0)}+\theta_1x_n^{(1)}+…+\theta_mx_n^{(m)}<br>\end{bmatrix} =\begin{bmatrix}<br>z_1 \\<br>z_2 \\<br>… \\<br>z_n<br>\end{bmatrix}<br>\end{equation*}<br>用矩阵乘法的列向量分解思想来说，$X\cdot\theta$表示$X$中的每一个列向量以系数$\theta$进行<code>线性组合</code>，符合公式的含义。</p>
+<ul>
+<li>2、我们再用列向量$Y = (y_1,y_2..y_n)^\mathrm{T}$表示输入数据的类别，然后我们对$Z$进行sigmoid函数运算，所以更新过程公式中$(y_i - h_{\theta}(x_i))$可以用n×1的列向量E表示：<br>\begin{equation*}<br>E = \begin{bmatrix}<br>y_1-\sigma(z_1) \\<br>y_2-\sigma(z_2)  \\<br>… \\<br>y_n-\sigma(z_n)<br>\end{bmatrix} =\begin{bmatrix}<br>e_1 \\<br>e_2 \\<br>… \\<br>e_n<br>\end{bmatrix}<br>\end{equation*}<br>(这里的E代表误差error)</li>
+<li>3、最后我们求解整个式子$\theta_j  = \theta_j+\alpha\sum_{i=1}^{n}(y_i - h_{\theta}(x_i))x_i^{(j)}$. 式中的连加同样可以通过矩阵乘法解决。<br>将$X$转置：
+\begin{equation*}
+X^\mathrm{T} = \begin{bmatrix}
+x_1,
+x_2,
+... 
+x_n
+\end{bmatrix} = 
+\begin{bmatrix}
+x_1^{(0)},x_2^{(0)}...x_n^{(0)} \\
+x_1^{(1)},x_2^{(1)}...x_n^{(1)}  \\
+...... \\
+x_1^{(m)},x_2^{(m)}...x_n^{(m)} 
+\end{bmatrix}
+\end{equation*}
+
+</li>
+</ul>
+<p>转置后矩阵是m×n的，仔细观察一下转置后的X，每一个列向量是一条输入数据，而<strong>每一个行向量是所有输入数据在某一个特征维度上的记录</strong>，一共有m个行向量。<br>所以，我们同时用每一个行向量$\cdot$列向量$E$,用矩阵乘法即：<br>
+\begin{equation*}
+X^\mathrm{T}\cdot\mathrm{E} = 
+\begin{bmatrix}
+x_1^{(0)}e_1+x_2^{(0)}e_2+...+x_n^{(0)}e_n \\
+x_1^{(1)}e_1+x_2^{(1)}e_2+...+x_n^{(1)}e_n \\
+...... \\\
+x_1^{(m)}e_1,x_2^{(m)}e_2+...+x_n^{(m)}e_n 
+\end{bmatrix}     
+\end{equation*}
+<br>(m*1)</p>
+<ul>
+<li>4、已知增长系数$\alpha$，然后我们就可以用矩阵计算进行一次梯度上升迭代：
+\begin{equation*}
+\theta_{n+1} = \theta_n +\alpha \cdot X^\mathrm{T}\cdot\mathrm{E} = 
+\begin{bmatrix}
+\theta_{n+1}^{(0)} \\
+\theta_{n+1}^{(1)} \\
+... \\
+\theta_{n+1}^{(m)}
+\end{bmatrix}     
+\end{equation*}
+
+</li>
+</ul>
+<ol>
+<li>设置合适的迭代次数，求得最终的特征系数$\theta$,我们就得到了训练好的判别函数。<h2 id="小结：">小结：</h2></li>
+</ol>
+<ul>
+<li>看完我们会发现，逻辑回归也是基于简单的线性分类思想，只不过逻辑回归通过一个契合线性分类的sigmoid函数，将数据到分界限的距离巧妙地投影到了0-1区间，进而可以将距离转化为概率，通过最大斯然估计求解。</li>
+<li>向量化的思想其实充斥着机器学习的各个角落。就像MIT线性代数公开课中说的，矩阵并不是生来存在的，而是人们后天发明用来方便计算的产物。将数据向量化，通过矩阵运算求解，是解决问题的必经之路。</li>
+</ul>
+<hr>
+<p>这次公式比较多，处理markdown语法和$\mathrm{\LaTeX}$的冲突時花了不少时间，不过也因此找到一个好方法，不用修改node.js的配置就可以处理好语法冲突，只需要在<code>公式的前后用raw标签注释就可以了</code>，原理应该是通过标签屏蔽了markdown语法的解释器，前端不是很懂，不过很有效哦～</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h2 id="引子">引子</h2><ul>
+<li>这部分总结的有点晚了，不过在熟悉机器学习体系和几个其它模型后，再回过头来看逻辑回归，发现从原理到思想都有比较好的理解。</li>
+<li>理论主要参考NG的斯坦福课程和李航老师的《统计学习方法》，代码实现参见《机器学习实战》]]>
+    </summary>
+    
+      <category term="分类" scheme="http://robinzheng.com/tags/%E5%88%86%E7%B1%BB/"/>
+    
+      <category term="判别模型" scheme="http://robinzheng.com/tags/%E5%88%A4%E5%88%AB%E6%A8%A1%E5%9E%8B/"/>
+    
+      <category term="机器学习" scheme="http://robinzheng.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="线性代数" scheme="http://robinzheng.com/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/"/>
+    
+      <category term="逻辑回归" scheme="http://robinzheng.com/tags/%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92/"/>
+    
+      <category term="技术" scheme="http://robinzheng.com/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[简谈贝叶斯决策]]></title>
+    <link href="http://robinzheng.com/2015/07/14/%E7%AE%80%E8%B0%88%E8%B4%9D%E5%8F%B6%E6%96%AF%E5%86%B3%E7%AD%96/"/>
+    <id>http://robinzheng.com/2015/07/14/简谈贝叶斯决策/</id>
+    <published>2015-07-14T13:44:57.000Z</published>
+    <updated>2015-08-24T08:49:35.000Z</updated>
+    <content type="html"><![CDATA[<p><strong>贝叶斯决策</strong>, 一种常用的分类方法，复杂度低，准确度好，可以和多种分类方法结合。最高的理论正确率令人神往（上自动化所模式识别课中多次强调）。<br>写一写学习贝叶斯方法中的几点理解，一个简单脉络而已，方便回顾，与大家分享。</p>
+<hr>
+<h2 id="1-_先验概率与后验概率">1. 先验概率与后验概率</h2><p>两个概念：</p>
+<ul>
+<li><code>先验概率</code>： 事情还没有发生，要求这件事情发生的可能性的大小。如P(A).</li>
+<li><code>后验概率</code>： 事情已经发生，要求这件事情发生的原因<code>是由某个因素引起的</code>可能性的大小，是后验概率. </li>
+</ul>
+<p>所以我们可以使用贝叶斯公式求后验概率，进而达到分类的目的。</p>
+<h2 id="2-_贝叶斯公式">2. 贝叶斯公式</h2><p>$$ P(F_j|E)= \dfrac{P(F_jE)}{P(E)} =  \dfrac{P(E|F_j)P(F_j)}{ \displaystyle{\sum_{i=1}^{n} }P(E|F_i)P(F_i) } $$</p>
+<p>两个核心：</p>
+<ul>
+<li><p><strong>推导</strong>：条件概率公式。分解中间步骤分子，我们得出结果$P(F_j|E) \cdot P(E)= P(F_jE) =   P(E|F_j) \cdot P(F_j)$.   </p>
+</li>
+<li><p><strong>应用</strong>：用于分类问题。分解中间步骤分母$P(E) = \displaystyle{\sum_{i=1}^{n} }P(E|F_i)P(F_i）$ ，每个$F_i$代表一个类别。</p>
+</li>
+</ul>
+<p>扯点零碎，条件概率公式对任意两个事件都是存在的，当两事件独立(即$P(EF) = P(E)P(F)$)时，$P(E|F) = P(EF)/P(F) = P(E)$.</p>
+<h2 id="3-_例子">3. 例子</h2><p>看过很多讲解贝叶斯公式的例子，下面这个很好:</p>
+<blockquote>
+<p>一份信件等可能的在存在三个不同的文件夹中的任意一个。假设信件实际在文件夹$i$中$(i = 1,2,3)$而你经过对文件夹$i$的快速翻阅发现信件的概率记为$a_i$，问题是，假定你查看了文件夹1且没有发现此信，问信件在文件夹1中的概率是多少？<br>                                                              ——<a href="http://book.douban.com/subject/2309401/" target="_blank" rel="external">《应用随机过程：概率模型导论》</a></p>
+</blockquote>
+<p><strong>解</strong>： 以$F_i(i = 1,2,3)$为信在文件中$i$中的事件<code>（先验概率）</code>，E是通过对文件夹1搜索而为看到信这个事件，我们求$P(F_1|E)$<code>(后验概率)</code>，通过贝叶斯公式：<br>$$    P(F_1|E)=  \dfrac{P(E|F_1)P(F_1)}{ \displaystyle{\sum_{i=1}^{3} }P(E|F_i)P(F_i) } = \dfrac{(1-a_1) \frac{1}{3}}{ (1-a_1) \frac{1}{3}+\frac{1}{3}+\frac{1}{3}} = \dfrac{1-a_1}{3-a_1}$$</p>
+<p>把握两个重点：</p>
+<pre><code>-<span class="ruby"> 对问题中事件的假设
+</span>-<span class="ruby"> 对整体事件空间(分母)的划分</span>
+</code></pre><h2 id="4-_一种简单实现：朴素贝叶斯">4. 一种简单实现：朴素贝叶斯</h2><p>贝叶斯思想只是一个框架，可结合许多假设与分布。<br>朴素思分类就是一个通过先验概率求后验概率的方法，然后将实例点分到后验概率最大的类。就像街上有一个黑人，我们预测黑人来自非洲，为什么呢？因为黑人中非洲人的比率最高。</p>
+<h4 id="朴素贝叶斯的核心假设：">朴素贝叶斯的核心假设：</h4><ol>
+<li><p>特征之间相互独立 ：这个“朴素”一词的来源。假设体现在向量的特征之间。所以有<br>$$P(x|y_i)P(y_i)=P(a_1|y_i)P(a_2|y_i)…P(a_m|y_i)P(y_i)=P(y_i)\prod^m_{j=1}P(a_j|y_i)$$</p>
+<ul>
+<li>$y_i$为每一个类别，$a_i$ 为样本X的特征的每一维分量</li>
+</ul>
+</li>
+<li><p>每个特征同等重要。</p>
+</li>
+</ol>
+<h2 id="5-_分类准则">5. 分类准则</h2><p>将输入向量分到后验概率最大的类，这就是<code>分类准则</code>。贝叶斯使用的是<code>最大后验概率准则</code>。<br>在别的分类方法中，我们还用过<code>最小错误率</code>的分类准则，比如基于0-1损失的最小错误率，这两者是一样的。</p>
+<p>设损失函数</p>
+<p>$L(Y,f(X))=$</p>
+<p>\begin{align*}<br>1,Y \not= f(X) \\<br>0, Y= f(X) \\<br>\end{align*}</p>
+<ul>
+<li>期望风险函数为</li>
+</ul>
+<p>\begin{equation*}<br>\begin{aligned}<br>R_e(f(x)) &amp; = E[L(Y, f(x))]\\<br>&amp; =  \iint_{X,Y}L(Y,f(X))P(X,Y)\mathrm{d}x\mathrm{d}y \\<br>&amp;= \iint_{X,Y}L(Y,f(X))P(Y|X)P(X)\mathrm{d}x\mathrm{d}y\\<br>&amp;= \int_{X} (\sum_{k=1}^{k}L(Y= c_k,f(X))P(Y=c_k|X) )P(X)\mathrm{d}x\\<br>&amp;= E_x(\sum_{k=1}^{k}L(Y= c_k,f(X))P(Y=c_k|X) )<br>\end{aligned}<br>\end{equation*}</p>
+<ul>
+<li>为了使期望最小，对$X=x$逐个极小化：</li>
+</ul>
+<p>\begin{equation*}<br>\begin{aligned}<br>f(x)&amp; = \arg\min \limits_{y\in\mathcal{Y}}\sum_{k=1}^{k}L(c_k,y)P(c_k|X=x) \\<br>&amp;=  \arg\min \limits_{y\in\mathcal{Y}}\sum_{k=1}^{k}P(y \not = c_k|X=x) \\<br>&amp;=  \arg\min \limits_{y\in\mathcal{Y}}\sum_{k=1}^{k}(1-P(y  = c_k|X=x) )\\<br>&amp;=  \arg\max \limits_{y\in\mathcal{Y}}P(y = c_k|X = x)<br>\end{aligned}<br>\end{equation*}</p>
+<p>可以看出，这就是<code>最大后验概率准则</code>，也是我们使用贝叶斯决策的分类准则。</p>
+<hr>
+<p>暂时先写这几点，顺带说一句，Hexo上写$\mathrm{\LaTeX}$公式，冲突比较多，还在寻找比较好的解决方法，</p>
+<p>Robin<br>2015.7.10 夜 </p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p><strong>贝叶斯决策</strong>, 一种常用的分类方法，复杂度低，准确度好，可以和多种分类方法结合。最高的理论正确率令人神往（上自动化所模式识别课中多次强调）。<br>写一写学习贝叶斯方法中的几点理解，一个简单脉络而已，方便回顾，与大家分享。</p>
+<hr>
+]]>
+    </summary>
+    
+      <category term="分类" scheme="http://robinzheng.com/tags/%E5%88%86%E7%B1%BB/"/>
+    
+      <category term="机器学习" scheme="http://robinzheng.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="贝叶斯" scheme="http://robinzheng.com/tags/%E8%B4%9D%E5%8F%B6%E6%96%AF/"/>
+    
+      <category term="技术" scheme="http://robinzheng.com/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[谈谈Linux的环境变量与启动文件]]></title>
+    <link href="http://robinzheng.com/2015/06/22/%E8%B0%88%E8%B0%88Linux%E7%9A%84%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E4%B8%8E%E5%90%AF%E5%8A%A8%E6%96%87%E4%BB%B6/"/>
+    <id>http://robinzheng.com/2015/06/22/谈谈Linux的环境变量与启动文件/</id>
+    <published>2015-06-22T15:53:59.000Z</published>
+    <updated>2015-10-15T09:59:46.000Z</updated>
+    <content type="html"><![CDATA[<p>最近在搭建hadoop 的环境，在配置环境变量的时候遇到一些问题，借这个机会系统总结了Linux的环境变量配置以及作用,以供备忘，主要参考了<a href="http://book.douban.com/subject/11589828/" target="_blank" rel="external">《Linux命令行与Shell脚本大全》</a>及部分网上文章。</p>
+<h2 id="1-_环境变量的作用">1.  环境变量的作用</h2><p>在不同系统中，环境变量总是扮演着相同的角色，安装完新环境，新软件，第一件事总是配置环境变量。</p>
+<h3 id="环境变量_：">环境变量 ：</h3><ul>
+<li>存储有关shell会话和<code>工作环境</code>的信息（如Java，hadoop，python等路径，主要是各个bin文件夹的绝对地址）</li>
+<li>变量储存在<code>内存</code>中，方便程序以及脚本访问</li>
+</ul>
+<h2 id="2-_环境变量的分类：">2.  环境变量的分类：</h2><h3 id="局部变量：">局部变量：</h3><ul>
+<li>特性：<code>作用于当前shell，</code>在子shell或者其它shell不可见（反映了局部变量的在当前进程可用的意义）  <strong>见例1</strong></li>
+<li><p>定义：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$  varname=abc       <span class="comment">#局部变量名尽量使用小写; = 左右不要有空格，否则变量名会被解析为命令</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>显示： </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$  <span class="built_in">echo</span> <span class="variable">$varname</span>     <span class="comment">#echo命令要使用$变量名</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>删除：       </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">unset</span> varname</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="全局变量：">全局变量：</h3><ul>
+<li>特性：作用于当前shell<code>及所有shell创建的子进程</code>; 系统登录时已经默认设置了许多全局环境变量。  <strong>见例2</strong></li>
+<li><p>定义：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$  varname=abc </span><br><span class="line">$  <span class="built_in">export</span> varname    <span class="comment">#先建立局部变量，用export导成全局变量</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>显示：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ printenv                 <span class="comment">#显示系统环境变量，系统环境变量一律大写  </span></span><br><span class="line">$ <span class="built_in">echo</span> <span class="variable">$varname</span>      <span class="comment">#显示单个变量</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>删除： </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">unset</span> varname      <span class="comment">#只对子进程中变量有效，父进程中的全局变量仍然存在。</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="3-_系统默认定义的全局环境变量">3.  系统默认定义的全局环境变量</h2><p>PATH变量是我们经常使用和修改的环境变量，它定义了<code>提供命令解析的搜索路径</code>。所以每当我们安装了新的环境，总要在更新PATH变量，这样就可以直接在任何位置使用命令，而不会出现commond not found的问题。 <br>　　其它系统变量的修改与添加也大致一样。</p>
+<h3 id="PATH变量：">PATH变量：</h3><ul>
+<li><p>特性： 命令行输入命令的搜索路径, 如：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ start-dfs.sh   <span class="comment">#启动HDFS，而不用进入../hadoop2.5.2/sbin/目录下</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看： </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> <span class="variable">$PATH</span></span><br><span class="line">/usr/<span class="built_in">local</span>/bin:/usr/bin:/bin:/usr/<span class="built_in">local</span>/games:/usr/games    <span class="comment">#不同值之间由:分割</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>添加值，修改：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ PATH=<span class="variable">$PATH</span>:/home/user/<span class="built_in">test</span>  <span class="comment">#添加目录/home/user/test, 只在当前shell有效</span></span><br><span class="line">$ <span class="built_in">export</span> PATH=.:/HOME/eobin:<span class="variable">$PATH</span>     <span class="comment">#单点符在PATH变量中代表当前路径，变量名可以放在末尾</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>通常我们把对于PATH变量的改动<code>写在系统或用户的启动文件中</code>，比如说~/.bashrc中，在登陆系统或者打开新shell时自动加载。</p>
+<h2 id="4-_启动文件与系统环境变量的加载：">4. 启动文件与系统环境变量的加载：</h2><h3 id="/etc/profile:">/etc/profile:</h3><ul>
+<li>作用：系统默认的<code>主启动文件</code>，每个用户登录时都会加载这个文件。</li>
+<li>变量持续时间：声明的变量会在每个新shell中存在，除非在子进程中被修改</li>
+</ul>
+<h3 id="$HOME/-bash_profile:">$HOME/.bash_profile:</h3><ul>
+<li>作用：用户专属的启动文件， 定义用户专属的环境变量，该文件会<code>先检查并加载HOME目录中的.bashrc文件</code>（如果存在）</li>
+</ul>
+<h3 id="$HOME/-bashrc:">$HOME/.bashrc:</h3><ul>
+<li>作用： <code>交互式shell的启动文件</code>，用于定制自己的命名别名和私有脚本</li>
+<li>这里有一点疑问，书中提到<blockquote>
+<p>如果bash是作为交互式shell启动的，它不去访问/etc/profile, 而会去用户的HOME目录检查.bashrc是否存在  - p116 《Linux命令行与Shell脚本大全》</p>
+</blockquote>
+</li>
+</ul>
+<p>但/etc/profile是随系统登录时就启动的，任何<code>交互式shell</code>都是其子进程，所以我认为不用访问自然会加载其中变量，而此处特地指出，不明其所以然，也许没有理解交互式shell的意义。当然结果并没有什么不同，都会以.bashrc中的设置为准。</p>
+<h2 id="5-_附例：">5. 附例：</h2><ul>
+<li><p><strong>例1</strong>   局部变量只在当前进程中有效</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">robin@esp:~$ varname=abc       定义变量varname</span><br><span class="line">robin@esp:~$ <span class="built_in">echo</span> <span class="variable">$varname</span>     显示，有值</span><br><span class="line">abc</span><br><span class="line">robin@esp:~$ bash              新建子进程</span><br><span class="line">robin@esp:~$ <span class="built_in">echo</span> <span class="variable">$varname</span>     显示，无值</span><br><span class="line"></span><br><span class="line">robin@esp:~$ <span class="built_in">exit</span>              退出子进程</span><br><span class="line"><span class="built_in">exit</span></span><br><span class="line">robin@esp:~$ <span class="built_in">echo</span> <span class="variable">$varname</span>     显示，有值</span><br><span class="line">abc</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>例2</strong>   全局变量的作用范围</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">robin@esp:~$ <span class="built_in">echo</span> <span class="variable">$varname</span>           显示变量，无值</span><br><span class="line"></span><br><span class="line">robin@esp:~$ bash                    新建子进程<span class="number">2</span></span><br><span class="line">robin@esp:~$ <span class="built_in">export</span> varname=bash2    定义全局变量</span><br><span class="line">robin@esp:~$ <span class="built_in">echo</span> <span class="variable">$varname</span>           显示，有值</span><br><span class="line">bash2</span><br><span class="line">robin@esp:~$ bash                    新建子进程<span class="number">3</span></span><br><span class="line">robin@esp:~$ <span class="built_in">echo</span> <span class="variable">$varname</span>           显示，有值</span><br><span class="line">bash2</span><br><span class="line">robin@esp:~$ <span class="built_in">exit</span>                    退出到bash2</span><br><span class="line"><span class="built_in">exit</span></span><br><span class="line">robin@esp:~$ <span class="built_in">exit</span>                    退出到原始进程</span><br><span class="line"><span class="built_in">exit</span></span><br><span class="line">robin@esp:~$ <span class="built_in">echo</span> <span class="variable">$varname</span>           显示，无值</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="#">#</h2><h2 id="END">END</h2><p>Robin<br>2015.6.22 夜</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>最近在搭建hadoop 的环境，在配置环境变量的时候遇到一些问题，借这个机会系统总结了Linux的环境变量配置以及作用,以供备忘，主要参考了<a href="http://book.douban.com/subject/11589828/" target="_blank" ]]>
+    </summary>
+    
+      <category term="linux" scheme="http://robinzheng.com/tags/linux/"/>
+    
+      <category term="环境变量" scheme="http://robinzheng.com/tags/%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/"/>
+    
+      <category term="技术" scheme="http://robinzheng.com/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[荆棘谷的青山]]></title>
+    <link href="http://robinzheng.com/2015/06/10/%E8%8D%86%E6%A3%98%E8%B0%B7%E7%9A%84%E9%9D%92%E5%B1%B1/"/>
+    <id>http://robinzheng.com/2015/06/10/荆棘谷的青山/</id>
+    <published>2015-06-10T22:07:27.000Z</published>
+    <updated>2015-07-20T08:05:24.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="正文">正文</h2><ul>
+<li><p>在GitPages安家了，第一篇博文，又是新的一行＂Hello world＂，一次新的开始．</p>
+</li>
+<li><p>建博客的念头由来已久，但又久未实行．总在挑什么语言，选什么框架，却忘了博客应该做什么．仔细想想，抛开技术因素，内容才是博客价值所在．</p>
+</li>
+<li><p>博文会以技术为主，原创为主，偶尔也会写点风马牛不想及的东西，权且一乐。有时间也会逐步把有道云笔记的一直以来积累的东西，挑一挑转过来。希望能做到少而精，有些意义．就像荆棘谷里的那个知名任务，一片片零散的残章断卷后，讲述了一个美妙的故事．</p>
+</li>
+<li><p>一直以来也拜读了许多大咖的博客，细致度与原创性都令人佩服，不求超越，只求也像他们一样有一颗沉静的心，能仔细的把好东西沉淀下来。</p>
+</li>
+<li><p>读博路上人渐稀。正值毕业季，可惜这次我是一个孤独的旁观者，只好贪婪的呼吸点弥漫在空气之中的喜悦．前路漫漫，希望能从这篇博文开始，真正的做点事情.</p>
+</li>
+</ul>
+<p> 　　 </p>
+<h2 id="">　　</h2><h3 id="最后附一段Eminem的歌词，烂熟于心，很喜欢：">最后附一段Eminem的歌词，烂熟于心，很喜欢：</h3><blockquote>
+<p>There’s batteries in my Walkman nothing isthe matter with me<br>即使生活充满悲剧，只要我Walkman还有电，困难算什么东西<br>Shit look on the bright side at least Iain’t walking<br>想想开心的事，至少我还有辆单车，是一个老司机<br>I bike ride through the neighborhood of myapartment<br>我嗨皮的驶过邻居家门口<br>Complex on a ten speed which I’ve acquiredparts that I<br>骑着这辆时速十码的组装车<br>Found in the garbage, a frame and put tireson it<br>从垃圾堆里找的部件，然后把轮胎装到架子上<br>Headphones on straight ahead and kids tryto start shit<br>耳机在耳边轰鸣，夹杂着熊孩子们的嘲笑<br>But if this all there is for me life offers<br>如果这是生活赐予我的全部<br>Why bother even tryna put up a fight, it’snonsense<br>那我为何还要与别人争斗？这毫无意义<br>But I think a lightbulb just lit up in my conscience<br>突然有些东西，它照亮了我的脑海<br>What about those rhymes I’ve been jottin’<br>是那些我随手记下的词句<br>They are kinda givin’ me confidence<br>它一直给予我自信和希望<br>Instead of tryna escape through my comics,<br>与其挣扎在这喜剧般的人生<br>Why don’t I just blast a little somethinglike Onyx<br>为何不像Onyx组合一样唱点什么？</p>
+</blockquote>
+<p>Robin<br>2015.6.10   夜</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h2 id="正文">正文</h2><ul>
+<li><p>在GitPages安家了，第一篇博文，又是新的一行＂Hello world＂，一次新的开始．</p>
+</li>
+<li><p>建博客的念头由来已久，但又久未实行．总在挑什么语言，选什么框架，却忘了博客应该做什么．仔细]]>
+    </summary>
+    
+      <category term="纪念" scheme="http://robinzheng.com/tags/%E7%BA%AA%E5%BF%B5/"/>
+    
+      <category term="生活" scheme="http://robinzheng.com/categories/%E7%94%9F%E6%B4%BB/"/>
+    
+  </entry>
+  
+</feed>
