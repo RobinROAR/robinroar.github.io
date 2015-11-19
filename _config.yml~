@@ -33,11 +33,16 @@ social:
   Twitter: https://twitter.com/RobinCountZZZ
   Weibo: http://weibo.com/u/2480620992
   Facebook: https://facebook.com/100002783527610
-  
+links_title: Links
+# links
+links:
+  Yantao's Blog: http://yantaoblog.info
+  山东大学:  http://www.sdu.edu.cn
+  中国科学院研究生院:  http://www.gucas.ac.cn
+  CNIC:  http://www.cnic.cn
 
 
-  
-
+ 
 
 # Directory
 source_dir: source
