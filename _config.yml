@@ -3,12 +3,12 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Lion's Pride Inn   -robin's blog
-subtitle: 即使有幸一次成功，也应感谢上帝对你的恩赐  
-description: Thinking，Inspiring，Recording
+title: Lion's Pride Inn   - Robin's blog
+#subtitle: 不要总想一蹴而就；即使有幸一次成功，也应感谢上帝对你的恩赐  
+description: 不要总想一蹴而就；即使有幸一次成功，也应感谢上帝对你的恩赐  
 author: Robin Zheng  
 email: zrb915@live.com
-language: zh-CN 
+language: zh-Hans 
 timezone:
 
 plugins:
@@ -19,6 +19,30 @@ url: http://robinzheng.com
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
+
+#Next reletive
+duoshuo_shortname:    robinzheng
+avatar: /images/avatar.jpg 
+jiathis: true
+baidushare: true
+duoshuo_hotartical: true
+baidu_analytics: aed15acd47dee14e0e1d6e3e8e55b6b0
+since: 2015
+social:
+  GitHub: https://github.com/RobinROAR
+  Twitter: https://twitter.com/RobinCountZZZ
+  Weibo: http://weibo.com/u/2480620992
+  Facebook: https://facebook.com/100002783527610
+links_title: Links
+# links
+links:
+  Yantao's Blog: http://yantaoblog.info
+  山东大学:  http://www.sdu.edu.cn
+  中国科学院研究生院:  http://www.gucas.ac.cn
+  CNIC:  http://www.cnic.cn
+
+
+ 
 
 # Directory
 source_dir: source
@@ -66,12 +90,13 @@ pagination_dir: page
 # Extensions
 ## Plugins: http://hexo.io/plugins/
 ## Themes: http://hexo.io/themes/
-theme: jacman
+theme: next
 stylus:
     compress: true
 # Deployment
 ## Docs: http://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: git@github.com:robinroar/robinroar.github.io
-  branch: master
+  repo: 
+    github: git@github.com:robinroar/robinroar.github.io,master
+    gitcafe: git@gitcafe.com:RobinROAR/RobinROAR.git,gitcafe-pages

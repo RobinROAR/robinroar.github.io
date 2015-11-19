@@ -12,9 +12,9 @@ date: 2015-06-10 18:07:27
 - CS在读
 - Java,  Python, C
 - 机器学习，轨迹数据挖掘，遥感处理
-
 ###Favorites:
 - <夜行者>： the art of negotiaton and logic
+
 ###Contact:
 - zrb915@live.com
 ##About blog
