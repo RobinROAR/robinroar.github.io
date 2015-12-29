@@ -135,7 +135,7 @@
   
 
   
-    <ul id="menu" class="menu ">
+    <ul id="menu" class="menu menu-left">
       
         
         <li class="menu-item menu-item-home">
@@ -178,16 +178,6 @@
         </li>
       
         
-        <li class="menu-item menu-item-about">
-          <a href="/about" rel="section">
-            
-              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
-            
-            关于
-          </a>
-        </li>
-      
-        
         <li class="menu-item menu-item-resume">
           <a href="/resume" rel="section">
             
@@ -197,12 +187,53 @@
           </a>
         </li>
       
+        
+        <li class="menu-item menu-item-timeline">
+          <a href="/timeline" rel="section">
+            
+              <i class="menu-item-icon fa fa-question-circle fa-fw"></i> <br />
+            
+            Timeline
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
 
       
       
     </ul>
   
 
+  
+    <div class="site-search">
+      
+  
+  <form class="site-search-form">
+    <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+  </form>
+
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', '4BCeYvsMTCWz1QxwXLib','2.0.0');
+</script>
+
+
+
+    </div>
   
 </nav>
 
@@ -251,6 +282,216 @@
             
               
                 
+                <a class="post-title-link" href="/2015/12/11/从相机投影模型谈谈矩阵组成/" itemprop="url">
+                  从相机投影模型谈谈矩阵组成
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2015-12-11T14:56:07+08:00" content="2015-12-11">
+              2015-12-11
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/12/11/从相机投影模型谈谈矩阵组成/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/11/从相机投影模型谈谈矩阵组成/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+            
+            
+          </span>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/12/11/从相机投影模型谈谈矩阵组成/#more" rel="contents">
+              更多 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/11/27/几种二维变换和对应的矩阵表示/" itemprop="url">
+                  总结几种二维变换和对应的矩阵表示
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2015-11-27T19:53:14+08:00" content="2015-11-27">
+              2015-11-27
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/理论/" itemprop="url" rel="index">
+                    <span itemprop="name">理论</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/11/27/几种二维变换和对应的矩阵表示/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/11/27/几种二维变换和对应的矩阵表示/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+            如果对线性代数有一定理解，容易发现不同的矩阵其实就代表各种变换；若把矩阵看成多个列向量的罗列，则更容易理解。这里简单总结几种常见的二维变换，及对应的矩阵方程。
+齐次坐标将各种的变换表达成矩阵的形式，需要引入齐次坐标 Homogeneous coordinates的概念。
+
+构建齐次坐标：在普通坐标中增加一个泛化的常数项，一般为1。 
+$$
+二维：(x,y)\Rightarrow\left(\begin{array}{c}
+x \\
+y \\
+1
+\end{array}
+\right),
+\qua
+            ...
+          </span>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/11/27/几种二维变换和对应的矩阵表示/#more" rel="contents">
+              更多 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2015/11/17/卷积的理解/" itemprop="url">
                   卷积的理解
                 </a>
@@ -272,8 +513,8 @@
               &nbsp; | &nbsp; 分类于
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/基础/" itemprop="url" rel="index">
-                    <span itemprop="name">基础</span>
+                  <a href="/categories/理论/" itemprop="url" rel="index">
+                    <span itemprop="name">理论</span>
                   </a>
                 </span>
 
@@ -758,13 +999,13 @@ Scikt-learn Example：Color Quantization using K-Means通过k-Means进行图像�
             
             贝叶斯决策, 一种常用的分类方法，复杂度低，准确度好，可以和多种分类方法结合。最高的理论正确率令人神往（上自动化所模式识别课中多次强调）。写一写学习贝叶斯方法中的几点理解，一个简单脉络而已，方便回顾，与大家分享。
 
-1. 先验概率与后验概率两个概念：
+先验概率与后验概率两个概念：
 
 先验概率： 事情还没有发生，要求这件事情发生的可能性的大小。如P(A).
 后验概率： 事情已经发生，要求这件事情发生的原因是由某个因素引起的可能性的大小，是后验概率. 
 
 所以我们可以使用贝叶斯公式求后验概率，进而达到分类的目的。
-2. 贝叶斯公
+贝叶斯公式$$ P(
             ...
           </span>
           <div class="post-more-link text-center">
@@ -1060,7 +1301,7 @@ Scikt-learn Example：Color Quantization using K-Means通过k-Means进行图像�
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-count">9</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1074,7 +1315,7 @@ Scikt-learn Example：Color Quantization using K-Means通过k-Means进行图像�
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">17</span>
+              <span class="site-state-item-count">21</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>

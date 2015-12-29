@@ -12,6 +12,7 @@ timezone:
 
 plugins:
 - hexo-generator-feed
+- hexo-generator-sitemap
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: http://robinzheng.com
@@ -20,6 +21,7 @@ permalink: :year/:month/:day/:title/
 permalink_defaults:
 
 #Next reletive
+swiftype_key: 4BCeYvsMTCWz1QxwXLib
 duoshuo_shortname:    robinzheng
 avatar: /images/avatar.jpg 
 jiathis: true

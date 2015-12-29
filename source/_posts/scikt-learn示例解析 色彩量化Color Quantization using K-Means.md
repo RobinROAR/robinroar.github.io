@@ -1,7 +1,7 @@
 title: scikt-learn示例解析 色彩量化Color Quantization using K-Means
 date: 2015-10-21 20:04:03
 tags: 
-- sklearn
+- scikt-learn
 - 机器学习
 - kmeans
 categories: 

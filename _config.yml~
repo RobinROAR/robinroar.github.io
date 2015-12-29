@@ -4,7 +4,6 @@
 
 # Site
 title: Lion's Pride Inn   - Robin's blog
-#subtitle: 不要总想一蹴而就；即使有幸一次成功，也应感谢上帝对你的恩赐  
 description: 不要总想一蹴而就；即使有幸一次成功，也应感谢上帝对你的恩赐  
 author: Robin Zheng  
 email: zrb915@live.com
@@ -13,6 +12,7 @@ timezone:
 
 plugins:
 - hexo-generator-feed
+- hexo-generator-sitemap
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: http://robinzheng.com

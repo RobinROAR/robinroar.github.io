@@ -5,7 +5,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://robinzheng.com//"/>
-  <updated>2015-11-19T11:37:41.000Z</updated>
+  <updated>2015-12-11T06:56:07.000Z</updated>
   <id>http://robinzheng.com//</id>
   
   <author>
@@ -16,11 +16,246 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title><![CDATA[从相机投影模型谈谈矩阵组成]]></title>
+    <link href="http://robinzheng.com/2015/12/11/%E4%BB%8E%E7%9B%B8%E6%9C%BA%E6%8A%95%E5%BD%B1%E6%A8%A1%E5%9E%8B%E8%B0%88%E8%B0%88%E7%9F%A9%E9%98%B5%E7%BB%84%E6%88%90/"/>
+    <id>http://robinzheng.com/2015/12/11/从相机投影模型谈谈矩阵组成/</id>
+    <published>2015-12-11T06:56:07.000Z</published>
+    <updated>2015-12-11T06:56:07.000Z</updated>
+    <content type="html"></content>
+    <summary type="html">
+    
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[总结几种二维变换和对应的矩阵表示]]></title>
+    <link href="http://robinzheng.com/2015/11/27/%E5%87%A0%E7%A7%8D%E4%BA%8C%E7%BB%B4%E5%8F%98%E6%8D%A2%E5%92%8C%E5%AF%B9%E5%BA%94%E7%9A%84%E7%9F%A9%E9%98%B5%E8%A1%A8%E7%A4%BA/"/>
+    <id>http://robinzheng.com/2015/11/27/几种二维变换和对应的矩阵表示/</id>
+    <published>2015-11-27T11:53:14.000Z</published>
+    <updated>2015-12-13T11:14:31.000Z</updated>
+    <content type="html"><![CDATA[<p>如果对线性代数有一定理解，容易发现不同的矩阵其实就代表各种变换；若把矩阵看成多个列向量的罗列，则更容易理解。这里简单总结几种常见的二维变换，及对应的矩阵方程。</p>
+<h2 id="齐次坐标">齐次坐标</h2><p>将各种的变换表达成矩阵的形式，需要引入<strong>齐次坐标 Homogeneous coordinates</strong>的概念。</p>
+<ul>
+<li>构建齐次坐标：在普通坐标中增加一个泛化的常数项，一般为1。 
+$$
+二维：(x,y)\Rightarrow\left(\begin{array}{c}
+x \\
+y \\
+1
+\end{array}
+\right),
+\quad 三维： (x,y,z) \Rightarrow \left(\begin{array}{c}
+x\\
+y\\
+z\\1
+\end{array}\right)
+$$
+- 转换成欧式坐标：
+$$二维：
+\left(\begin{array}{c}x\\y\\w
+\end{array}\right) \Rightarrow (\frac{x}{w},\frac{y}{w})，
+\quad 三维：
+\left(\begin{array}{c}x\\y\\z\\w
+\end{array}\right) \Rightarrow (\frac{x}{w},\frac{y}{w},\frac{z}{w})
+$$
+</li>
+<li>意义主要有两个方面: </li>
+</ul>
+<ol>
+<li>一个是在射影空间中代表无穷远。射影空间相较于欧式空间引入了无穷远的概念，即无穷远点，无穷远直线等，这些<strong>无穷远点的齐次坐标最后一位是0,而有限点最后一位是1</strong>，这些是射影几何中的概念，最后有个例子，这里不详细讨论。</li>
+<li>另一点就是方便运算，通过引入齐次坐标可以简单的将<a href="#add">加法</a>和<a href="dev">除法</a>通过矩阵相乘的方式表示，后面的例子会有印证。</li>
+</ol>
+<hr>
+<h2 id="几种二维变换">几种二维变换</h2><ul>
+<li>简述：<ul>
+<li>随范围的递增，主要有四种变换类型：欧式变换群，相似变换群，仿射变换群，射影变换群。</li>
+<li>这些变换都是二维坐标的变换，是一种一矩阵形式体现的广义线性变换。</li>
+<li>这些变换基本上由几种原子变换组成：平移，旋转，伸缩</li>
+</ul>
+</li>
+<li><text id="add">几种原子变换<text>：<ul>
+<li>平移 Translation<br><img src="http://7xjz3b.com1.z0.glb.clouddn.com/translate.jpg" alt="">
+$$坐标方程： 
+\begin{align*}
+x'= x+t_x\\
+y'=y+y_x
+\end{align*}
+，
+\quad 转换矩阵:
+\begin{bmatrix}
+x'\\y'\\1
+\end{bmatrix}=
+\begin{bmatrix}1&0&t_x\\0&1&t_y\\0&0&1\end{bmatrix}
+\begin{bmatrix}x\\y\\1\end{bmatrix}
+$$
+
+这里体现了齐次坐标<strong>方便计算加减法的性质。</strong></li>
+<li>伸缩 scale<br><img src="http://7xjz3b.com1.z0.glb.clouddn.com/scale.jpg" alt="">
+$$坐标方程： 
+\begin{align*}
+x'= sx\\
+y'=sy
+\end{align*}
+,
+\quad\quad 转换矩阵:
+\begin{bmatrix}
+x'\\y'\\1
+\end{bmatrix}=
+\begin{bmatrix}s&0&0\\0&s&0\\0&0&1\end{bmatrix}
+\begin{bmatrix}x\\y\\1\end{bmatrix}
+$$
+</li>
+<li>旋转 rotation<br>旋转的角度$\theta$默认是逆时针方向。<br><img src="http://7xjz3b.com1.z0.glb.clouddn.com/rotation.jpg" alt="">
+$$坐标方程： 
+\begin{align*}
+x'= x\cos\theta-y\sin\theta\\
+y'=x\sin\theta+y\cos\theta
+\end{align*}
+,
+\quad\quad 转换矩阵:
+\begin{bmatrix}
+x'\\y'\\1
+\end{bmatrix}=
+\begin{bmatrix}\cos\theta&-\sin\theta&0\\\sin\theta&\cos\theta&0\\0&0&1\end{bmatrix}
+\begin{bmatrix}x\\y\\1\end{bmatrix}
+$$
+
+</li>
+</ul>
+</text></text></li>
+</ul>
+<h3 id="欧式变换_(Euclidean_transformations)：">欧式变换 (Euclidean transformations)：</h3><ul>
+<li>组成：旋转+平移。 （该图例为先旋转，再平移）</li>
+<li>3自由度：1旋转，2平移 （自由度即影响矩阵的自由数的个数，这里有一个角度，xy两个平移坐标, 关系到空间中至少需要几个不相关的点可以描述一个变换）</li>
+<li>不变量：长度，角度，面积，点线关系<br><img src="http://7xjz3b.com1.z0.glb.clouddn.com/Euclid1.jpg" alt=""></li>
+<li>表示：
+欧式坐标方程：
+$$
+x' = x_i\cos\theta-y_i\sin\theta+t_x\\
+y' = x_i\sin\theta+y_i\cos\theta+t_y\\
+$$
+齐次坐标矩阵表示
+$$
+\begin{bmatrix}
+x'\\y'\\1
+\end{bmatrix}=
+\begin{bmatrix}\cos\theta&-\sin\theta&t_x\\\sin\theta&\cos\theta&t_y\\0&0&1\end{bmatrix}
+\begin{bmatrix}x\\y\\1\end{bmatrix}\\ 
+$$
+化简，设p为原向量,$H_E$为变换矩阵
+$$
+p' = H_Ep = \begin{bmatrix}R&t\\0^\mathrm{T}&1\end{bmatrix}p, 其中旋转矩阵R是正交矩阵
+$$
+
+</li>
+</ul>
+<h3 id="相似变换_(Similiarity_transformations)：">相似变换 (Similiarity transformations)：</h3><ul>
+<li>组成：尺度因子+旋转+平移</li>
+<li>4自由度：1尺度，1旋转，2平移 </li>
+<li>不变量：长度比，角度，面积比，点线关系<br><img src="http://7xjz3b.com1.z0.glb.clouddn.com/similarity1.jpg" alt=""></li>
+<li>表示：
+欧式坐标方程（a(x,y)为原向量）：
+$$
+a' = sRa+t
+$$
+齐次坐标矩阵表示：
+$$
+\begin{bmatrix}
+x'\\y'\\1
+\end{bmatrix}=
+\begin{bmatrix}s\cos\theta&-s\sin\theta&t_x\\s\sin\theta&s\cos\theta&t_y\\0&0&1\end{bmatrix}
+\begin{bmatrix}x\\y\\1\end{bmatrix}\\ 
+$$
+化减，设p为原向量的齐次坐标,$H_s$为变换矩阵
+$$
+p' = H_sp = \begin{bmatrix}sR&t\\0^\mathrm{T}&1\end{bmatrix}p, 其中旋转矩阵R是正交矩阵
+$$
+
+</li>
+</ul>
+<h3 id="仿射变换_(Affine_transformations)：">仿射变换 (Affine transformations)：</h3><ul>
+<li>组成：非均匀缩放。是相似变换的推广，使夹角不再保持不变；仿射变换对平面的作用是均匀的。</li>
+<li>6自由度：2尺度，2旋转，2平移 </li>
+<li>不变量：平行线，平行线段长度比，面积比，点线关系</li>
+<li>点的转换：经过仿射变换，有限点只能转换成有限点，但无穷远点只能还是无穷远点（通过转换矩阵揭示）。<br><img src="http://7xjz3b.com1.z0.glb.clouddn.com/affine.jpg" alt="图和方程无关"></li>
+<li>表示：
+欧式坐标方程（a(x,y)为原向量）：
+$$
+a' = Aa+t
+$$
+化简，设p为原向量的齐次坐标向量,$H_A$为变换矩阵
+$$
+p' = H_Ap = Ap+t = \begin{bmatrix}A&t\\0^\mathrm{T}&1\end{bmatrix}p
+$$
+其中
+$$
+A = R(\theta)R(-\varphi)DR(\varphi), \quad D= \left(\begin{array}{cc}\lambda_1&0\\0&\lambda_2\end{array}\right)\\
+$$
+同时
+$$
+A = UDV^\mathrm{T} = (UV^\mathrm{T})(VDV^\mathrm{T})=R(\theta)R(-\varphi)DR(\varphi)
+$$
+
+</li>
+</ul>
+<h3 id="射影变换_(Projective_transformations)：">射影变换 (Projective transformations)：</h3><ul>
+<li>组成：需要对射影几何中各概念详细理解</li>
+<li>8自由度：2维中变换矩阵是3x3的，除了泛化的常数$H_{33}=1$,其他均自由 </li>
+<li>不变量：交比，射影空间中概念，射影空间中交比不变，点线关系</li>
+<li>点的转换：经过仿射变换，有限点可以被转换成无穷远点，但<strong>无穷远点可以转换为有限点</strong>。<br><img src="http://7xjz3b.com1.z0.glb.clouddn.com/project.jpg" alt=""></li>
+<li>表示：<br>欧式坐标方程（a(x,y)为原向量）：
+$$
+a'=\frac{Aa+t}{c^\mathrm{T}a+1}，\quad 
+ \begin{bmatrix}a'\\1\end{bmatrix}\sim\begin{bmatrix}A&t\\c^\mathrm{T}&1\end{bmatrix}\begin{bmatrix}a\\1\end{bmatrix}
+$$
+<text id="dev">用$\sim$的原因是经过射影变换齐次坐标的常数项会发生变化。<text>
+这里也体现齐次坐标方便了**除法**的运算，通过矩阵影响齐次坐标最后的常数，通过齐次坐标与欧式坐标的转换$\left(\begin{array}{c}x\\y\\w
+\end{array}\right) \Rightarrow (\frac{x}{w},\frac{y}{w})$，完成除法运算。
+$$
+$$
+化为齐次坐标和矩阵表示,经过射影转换后，齐次坐标最后一项不一定为1：
+$$
+\begin{bmatrix}
+x'\\y'\\w
+\end{bmatrix}=
+\begin{bmatrix}h_{11}&h_{12}&h_{13}\\h_{21}&h_{22}&h_{23}\\h{31}&h{32}&h{33}\end{bmatrix}
+\begin{bmatrix}x\\y\\1\end{bmatrix}\\ 
+$$
+化简，设p为原向量的齐次坐标，$H_p$为变换矩阵
+$$
+p' = H_pp = \begin{bmatrix}A&t\\c^\mathrm{T}&b\end{bmatrix}p\sim\begin{bmatrix}A&t\\c^\mathrm{T}&1\end{bmatrix}p
+$$
+射影变换与仿射变换根本别在于： $c^\mathrm{T}\neq 0$，因此，对于无穷远点$\left(\begin{array}{c}x\\y\\0\end{array}\right)$，经过仿射变换后齐次坐标变为$\left(\begin{array}{c}x\\y\\c_1x+c_2y\end{array}\right)$，如此将无穷远点转化为有限点。
+
+</text></text></li>
+</ul>
+<hr>
+<p>-Robin<br>December 7, 2015 4:52 PM</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>如果对线性代数有一定理解，容易发现不同的矩阵其实就代表各种变换；若把矩阵看成多个列向量的罗列，则更容易理解。这里简单总结几种常见的二维变换，及对应的矩阵方程。</p>
+<h2 id="齐次坐标">齐次坐标</h2><p>将各种的变换表达成矩阵的形式，需要引入<strong>]]>
+    </summary>
+    
+      <category term="变换" scheme="http://robinzheng.com/tags/%E5%8F%98%E6%8D%A2/"/>
+    
+      <category term="矩阵" scheme="http://robinzheng.com/tags/%E7%9F%A9%E9%98%B5/"/>
+    
+      <category term="计算机视觉" scheme="http://robinzheng.com/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
+    
+      <category term="齐次坐标" scheme="http://robinzheng.com/tags/%E9%BD%90%E6%AC%A1%E5%9D%90%E6%A0%87/"/>
+    
+      <category term="理论" scheme="http://robinzheng.com/categories/%E7%90%86%E8%AE%BA/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[卷积的理解]]></title>
     <link href="http://robinzheng.com/2015/11/17/%E5%8D%B7%E7%A7%AF%E7%9A%84%E7%90%86%E8%A7%A3/"/>
     <id>http://robinzheng.com/2015/11/17/卷积的理解/</id>
     <published>2015-11-17T13:32:28.000Z</published>
-    <updated>2015-11-19T11:37:41.000Z</updated>
+    <updated>2015-12-04T03:11:40.000Z</updated>
     <content type="html"><![CDATA[<p>最近计算机视觉课上讲到了卷积，之前没有很好理解，趁此做一个总结。</p>
 <h2 id="定义：">定义：</h2><p>定义一种卷积运算，将两个函数$g(x)$与$f(x)$通过该运算得到$h(x)$</p>
 <ul>
@@ -67,7 +302,7 @@
     
       <category term="图像处理" scheme="http://robinzheng.com/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/"/>
     
-      <category term="基础" scheme="http://robinzheng.com/categories/%E5%9F%BA%E7%A1%80/"/>
+      <category term="理论" scheme="http://robinzheng.com/categories/%E7%90%86%E8%AE%BA/"/>
     
   </entry>
   
@@ -140,7 +375,7 @@
     <link href="http://robinzheng.com/2015/10/21/scikt-learn%E7%A4%BA%E4%BE%8B%E8%A7%A3%E6%9E%90%20%E8%89%B2%E5%BD%A9%E9%87%8F%E5%8C%96Color%20Quantization%20using%20K-Means/"/>
     <id>http://robinzheng.com/2015/10/21/scikt-learn示例解析 色彩量化Color Quantization using K-Means/</id>
     <published>2015-10-21T12:04:03.000Z</published>
-    <updated>2015-11-19T03:50:55.000Z</updated>
+    <updated>2015-11-23T08:04:47.000Z</updated>
     <content type="html"><![CDATA[<p>翻译并解释了scikt-learn官网示例，留作备忘。</p>
 <h1 id="Scikt-learn_Example：Color_Quantization_using_K-Means">Scikt-learn Example：Color Quantization using K-Means</h1><p>通过k-Means进行图像的色彩量化<br>url： <a href="http://scikit-learn.org/stable/auto_examples/cluster/plot_color_quantization.html" target="_blank" rel="external">http://scikit-learn.org/stable/auto_examples/cluster/plot_color_quantization.html</a></p>
 <h2 id="简介">简介</h2><p><strong>色彩量化</strong>是数据压缩的一个有效手段。这个示例提供了一个基于像素的色彩量化例子，将一副图片从96615个独立颜色降低到64色，大幅减小了图像大小，同时保留图片的基本外观。<br>示例通过聚类方法K-Means，从每一点的像素值中选取64个聚类中心，然后将所有点按照距离度量最接近的像素值分配，从而达到色彩量化的目的。在实际操作中，图像是以三维数组存储的（w，h，d），每一个RGB像素也需要一个长度为3的数组来表示（红绿蓝）。除此之外，示例使用了另一个方法random codebook，即随机挑选像素值作为聚类中心，然后再将所有像素分类，对比实验。</p>
@@ -185,7 +420,7 @@
     
       <category term="kmeans" scheme="http://robinzheng.com/tags/kmeans/"/>
     
-      <category term="sklearn" scheme="http://robinzheng.com/tags/sklearn/"/>
+      <category term="scikt-learn" scheme="http://robinzheng.com/tags/scikt-learn/"/>
     
       <category term="机器学习" scheme="http://robinzheng.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
     
@@ -198,7 +433,7 @@
     <link href="http://robinzheng.com/2015/08/13/%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92%E4%B8%8E%E8%AE%A1%E7%AE%97%E4%B8%AD%E7%9A%84%E5%90%91%E9%87%8F%E5%8C%96%E6%80%9D%E6%83%B3/"/>
     <id>http://robinzheng.com/2015/08/13/逻辑回归与计算中的向量化思想/</id>
     <published>2015-08-13T09:36:33.000Z</published>
-    <updated>2015-08-17T02:59:26.000Z</updated>
+    <updated>2015-12-06T10:19:47.000Z</updated>
     <content type="html"><![CDATA[<h2 id="引子">引子</h2><ul>
 <li>这部分总结的有点晚了，不过在熟悉机器学习体系和几个其它模型后，再回过头来看逻辑回归，发现从原理到思想都有比较好的理解。</li>
 <li>理论主要参考NG的斯坦福课程和李航老师的《统计学习方法》，代码实现参见《机器学习实战》。</li>
@@ -327,7 +562,7 @@ x_1^{(m)}e_1,x_2^{(m)}e_2+...+x_n^{(m)}e_n
 <li>向量化的思想其实充斥着机器学习的各个角落。就像MIT线性代数公开课中说的，矩阵并不是生来存在的，而是人们后天发明用来方便计算的产物。将数据向量化，通过矩阵运算求解，是解决问题的必经之路。</li>
 </ul>
 <hr>
-<p>这次公式比较多，处理markdown语法和$\mathrm{\LaTeX}$的冲突時花了不少时间，不过也因此找到一个好方法，不用修改node.js的配置就可以处理好语法冲突，只需要在<code>公式的前后用raw标签注释就可以了</code>，原理应该是通过标签屏蔽了markdown语法的解释器，前端不是很懂，不过很有效哦～</p>
+<p>这次公式比较多，处理markdown语法和$\mathrm{\LaTeX}$的冲突時花了不少时间，不过也因此找到一个好方法，不用修改node.js的配置就可以处理好语法冲突，只需要在<code>公式的前后用raw标签注释就可以了</code>，原理应该是通过标签屏蔽了markdown语法的解释器，前端不是很懂，不过很有效～</p>
 ]]></content>
     <summary type="html">
     <![CDATA[<h2 id="引子">引子</h2><ul>
@@ -354,16 +589,16 @@ x_1^{(m)}e_1,x_2^{(m)}e_2+...+x_n^{(m)}e_n
     <link href="http://robinzheng.com/2015/07/14/%E7%AE%80%E8%B0%88%E8%B4%9D%E5%8F%B6%E6%96%AF%E5%86%B3%E7%AD%96/"/>
     <id>http://robinzheng.com/2015/07/14/简谈贝叶斯决策/</id>
     <published>2015-07-14T01:44:57.000Z</published>
-    <updated>2015-11-09T11:22:52.000Z</updated>
+    <updated>2015-12-02T09:45:04.000Z</updated>
     <content type="html"><![CDATA[<p><strong>贝叶斯决策</strong>, 一种常用的分类方法，复杂度低，准确度好，可以和多种分类方法结合。最高的理论正确率令人神往（上自动化所模式识别课中多次强调）。<br>写一写学习贝叶斯方法中的几点理解，一个简单脉络而已，方便回顾，与大家分享。</p>
 <hr>
-<h2 id="1-_先验概率与后验概率">1. 先验概率与后验概率</h2><p>两个概念：</p>
+<h2 id="先验概率与后验概率">先验概率与后验概率</h2><p>两个概念：</p>
 <ul>
 <li><code>先验概率</code>： 事情还没有发生，要求这件事情发生的可能性的大小。如P(A).</li>
 <li><code>后验概率</code>： 事情已经发生，要求这件事情发生的原因<code>是由某个因素引起的</code>可能性的大小，是后验概率. </li>
 </ul>
 <p>所以我们可以使用贝叶斯公式求后验概率，进而达到分类的目的。</p>
-<h2 id="2-_贝叶斯公式">2. 贝叶斯公式</h2><p>$$ P(F_j|E)= \dfrac{P(F_jE)}{P(E)} =  \dfrac{P(E|F_j)P(F_j)}{ \displaystyle{\sum_{i=1}^{n} }P(E|F_i)P(F_i) } $$</p>
+<h2 id="贝叶斯公式">贝叶斯公式</h2><p>$$ P(F_j|E)= \dfrac{P(F_jE)}{P(E)} =  \dfrac{P(E|F_j)P(F_j)}{ \displaystyle{\sum_{i=1}^{n} }P(E|F_i)P(F_i) } $$</p>
 <p>两个核心：</p>
 <ul>
 <li><p><strong>推导</strong>：条件概率公式。分解中间步骤分子，我们得出结果$P(F_j|E) \cdot P(E)= P(F_jE) =   P(E|F_j) \cdot P(F_j)$.   </p>
@@ -372,7 +607,7 @@ x_1^{(m)}e_1,x_2^{(m)}e_2+...+x_n^{(m)}e_n
 </li>
 </ul>
 <p>扯点零碎，条件概率公式对任意两个事件都是存在的，当两事件独立(即$P(EF) = P(E)P(F)$)时，$P(E|F) = P(EF)/P(F) = P(E)$.</p>
-<h2 id="3-_例子">3. 例子</h2><p>看过很多讲解贝叶斯公式的例子，下面这个很好:</p>
+<h2 id="例子">例子</h2><p>看过很多讲解贝叶斯公式的例子，下面这个很好:</p>
 <blockquote>
 <p>一份信件等可能的在存在三个不同的文件夹中的任意一个。假设信件实际在文件夹$i$中$(i = 1,2,3)$而你经过对文件夹$i$的快速翻阅发现信件的概率记为$a_i$，问题是，假定你查看了文件夹1且没有发现此信，问信件在文件夹1中的概率是多少？<br>                                                              ——<a href="http://book.douban.com/subject/2309401/" target="_blank" rel="external">《应用随机过程：概率模型导论》</a></p>
 </blockquote>
@@ -380,7 +615,7 @@ x_1^{(m)}e_1,x_2^{(m)}e_2+...+x_n^{(m)}e_n
 <p>把握两个重点：</p>
 <pre><code>-<span class="ruby"> 对问题中事件的假设
 </span>-<span class="ruby"> 对整体事件空间(分母)的划分</span>
-</code></pre><h2 id="4-_一种简单实现：朴素贝叶斯">4. 一种简单实现：朴素贝叶斯</h2><p>贝叶斯思想只是一个框架，可结合许多假设与分布。<br>朴素思分类就是一个通过先验概率求后验概率的方法，然后将实例点分到后验概率最大的类。就像街上有一个黑人，我们预测黑人来自非洲，为什么呢？因为黑人中非洲人的比率最高。</p>
+</code></pre><h2 id="简单实现：朴素贝叶斯">简单实现：朴素贝叶斯</h2><p>贝叶斯思想只是一个框架，可结合许多假设与分布。<br>朴素思分类就是一个通过先验概率求后验概率的方法，然后将实例点分到后验概率最大的类。就像街上有一个黑人，我们预测黑人来自非洲，为什么呢？因为黑人中非洲人的比率最高。</p>
 <h4 id="朴素贝叶斯的核心假设：">朴素贝叶斯的核心假设：</h4><ol>
 <li><p>特征之间相互独立 ：这个“朴素”一词的来源。假设体现在向量的特征之间。所以有<br>$$P(x|y_i)P(y_i)=P(a_1|y_i)P(a_2|y_i)…P(a_m|y_i)P(y_i)=P(y_i)\prod^m_{j=1}P(a_j|y_i)$$</p>
 <ul>
@@ -390,7 +625,7 @@ x_1^{(m)}e_1,x_2^{(m)}e_2+...+x_n^{(m)}e_n
 <li><p>每个特征同等重要。</p>
 </li>
 </ol>
-<h2 id="5-_分类准则">5. 分类准则</h2><p>将输入向量分到后验概率最大的类，这就是<code>分类准则</code>。贝叶斯使用的是<code>最大后验概率准则</code>。<br>在别的分类方法中，我们还用过<code>最小错误率</code>的分类准则，比如基于0-1损失的最小错误率，这两者是一样的。</p>
+<h2 id="分类准则">分类准则</h2><p>将输入向量分到后验概率最大的类，这就是<code>分类准则</code>。贝叶斯使用的是<code>最大后验概率准则</code>。<br>在别的分类方法中，我们还用过<code>最小错误率</code>的分类准则，比如基于0-1损失的最小错误率，这两者是一样的。</p>
 <p>设损失函数</p>
 <p>$L(Y,f(X))=$</p>
 <p>\begin{align*}<br>1,Y \not= f(X) \\<br>0, Y= f(X) \\<br>\end{align*}</p>

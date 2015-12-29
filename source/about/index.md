@@ -10,23 +10,29 @@ date: 2015-06-10 18:07:27
 ##About me
 ###Skill
 - CS在读
-- Java,  Python, C
-- 机器学习，轨迹数据挖掘，遥感处理
+- Python, Java, C++
+- 轨迹数据挖掘，遥感图像处理，机器学习
+
 ###Favorites:
-- <夜行者>： the art of negotiaton and logic
+- 昆汀·塔伦蒂诺
 
 ###Contact:
 - zrb915@live.com
-##About blog
 
-- 博文会以技术为主，原创为主，也许会偶尔有感而发，写点风马牛不想及的想法，权且一乐。
-- 也会逐步把有道云笔记中的各类总结迁移过来。
-	- Node.js
-	- Hexo
-	- EJS
-	- GitHub Pages
-	- 多说
-	- 七牛
-	- CNZZ
+###About blog
+
+- 博文会以技术为主，不转别人文章，都是自己的总结和体会。
+- 也许偶尔有感而发，写点风马牛不想及的想法，权且一乐。
+- 会逐步把有道云笔记中的各类总结迁移过来。
+
+###感谢以下技术的支持
+- Node.js
+- Hexo
+- EJS
+- GitHub Pages
+- GitCafe
+- 多说
+- 七牛
+- CNZZ
 
 
