@@ -35,7 +35,7 @@
 <link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="卷积,图像处理," />
+  <meta name="keywords" content="卷积,计算机视觉," />
 
 
 
@@ -53,30 +53,33 @@
 
 
 
-<meta name="description" content="最近计算机视觉课上讲到了卷积，之前没有很好理解，趁此做一个总结。
-定义：定义一种卷积运算，将两个函数$g(x)$与$f(x)$通过该运算得到$h(x)$
+<meta name="description" content="对卷积内容的一些学习和整理，从基本的图像滤波到CNN，供备忘和交流，个别图借用了自动化所董老师的课件。
+一、卷积1. 定义：定义一种卷积运算，将两个函数$g(x)$与$f(x)$通过该运算得到$h(x)$
 
-卷积有多重解释。泛函中解释为两个函数生成第三个函数的数学算子；概率论解释为两变量叠加的概率密度等，这些解释的特点是两个卷积函数地位是相同的，对应$(f\otimes g) (x) = (g\otimes f) (x)$，具体也有推导，我们不详细">
+卷积有多重解释。泛函中解释为两个函数生成第三个函数的数学算子；概率论解释为两变量叠加的概率密度等，这些解释的特点是两个卷积函数地位是相同的，对应$(f\otimes g) (x) = (g\o">
 <meta property="og:type" content="article">
-<meta property="og:title" content="卷积的理解">
-<meta property="og:url" content="http://robinzheng.com/2015/11/17/卷积的理解/index.html">
+<meta property="og:title" content="卷积的理解与图像处理中的应用">
+<meta property="og:url" content="http://robinzheng.com/2015/11/17/卷积的理解与图像处理中的应用/index.html">
 <meta property="og:site_name" content="Lion's Pride Inn   - Robin's blog">
-<meta property="og:description" content="最近计算机视觉课上讲到了卷积，之前没有很好理解，趁此做一个总结。
-定义：定义一种卷积运算，将两个函数$g(x)$与$f(x)$通过该运算得到$h(x)$
+<meta property="og:description" content="对卷积内容的一些学习和整理，从基本的图像滤波到CNN，供备忘和交流，个别图借用了自动化所董老师的课件。
+一、卷积1. 定义：定义一种卷积运算，将两个函数$g(x)$与$f(x)$通过该运算得到$h(x)$
 
-卷积有多重解释。泛函中解释为两个函数生成第三个函数的数学算子；概率论解释为两变量叠加的概率密度等，这些解释的特点是两个卷积函数地位是相同的，对应$(f\otimes g) (x) = (g\otimes f) (x)$，具体也有推导，我们不详细">
+卷积有多重解释。泛函中解释为两个函数生成第三个函数的数学算子；概率论解释为两变量叠加的概率密度等，这些解释的特点是两个卷积函数地位是相同的，对应$(f\otimes g) (x) = (g\o">
 <meta property="og:image" content="http://7xjz3b.com1.z0.glb.clouddn.com/juanji1.jpg">
 <meta property="og:image" content="http://7xjz3b.com1.z0.glb.clouddn.com/figure_3.png">
 <meta property="og:image" content="http://7xjz3b.com1.z0.glb.clouddn.com/figure_1.png">
 <meta property="og:image" content="http://7xjz3b.com1.z0.glb.clouddn.com/figure_2.png">
+<meta property="og:image" content="http://7xjz3b.com1.z0.glb.clouddn.com/juanji6.jpg">
+<meta property="og:image" content="http://7xjz3b.com1.z0.glb.clouddn.com/juanji7.jpg">
 <meta property="og:image" content="http://7xjz3b.com1.z0.glb.clouddn.com/juanji5.jpg">
-<meta property="og:updated_time" content="2015-12-04T03:11:40.000Z">
+<meta property="og:image" content="http://7xjz3b.com1.z0.glb.clouddn.com/juanji8.jpg">
+<meta property="og:updated_time" content="2016-02-26T03:03:56.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="卷积的理解">
-<meta name="twitter:description" content="最近计算机视觉课上讲到了卷积，之前没有很好理解，趁此做一个总结。
-定义：定义一种卷积运算，将两个函数$g(x)$与$f(x)$通过该运算得到$h(x)$
+<meta name="twitter:title" content="卷积的理解与图像处理中的应用">
+<meta name="twitter:description" content="对卷积内容的一些学习和整理，从基本的图像滤波到CNN，供备忘和交流，个别图借用了自动化所董老师的课件。
+一、卷积1. 定义：定义一种卷积运算，将两个函数$g(x)$与$f(x)$通过该运算得到$h(x)$
 
-卷积有多重解释。泛函中解释为两个函数生成第三个函数的数学算子；概率论解释为两变量叠加的概率密度等，这些解释的特点是两个卷积函数地位是相同的，对应$(f\otimes g) (x) = (g\otimes f) (x)$，具体也有推导，我们不详细">
+卷积有多重解释。泛函中解释为两个函数生成第三个函数的数学算子；概率论解释为两变量叠加的概率密度等，这些解释的特点是两个卷积函数地位是相同的，对应$(f\otimes g) (x) = (g\o">
 
 
 
@@ -88,7 +91,7 @@
   };
 </script>
 
-  <title> 卷积的理解 | Lion's Pride Inn   - Robin's blog </title>
+  <title> 卷积的理解与图像处理中的应用 | Lion's Pride Inn   - Robin's blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -279,7 +282,7 @@
             
             
               
-                卷积的理解
+                卷积的理解与图像处理中的应用
               
             
           </h1>
@@ -314,8 +317,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/11/17/卷积的理解/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/11/17/卷积的理解/" itemprop="commentsCount"></span>
+                <a href="/2015/11/17/卷积的理解与图像处理中的应用/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/11/17/卷积的理解与图像处理中的应用/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -334,40 +337,89 @@
       
 
       
-        <span itemprop="articleBody"><p>最近计算机视觉课上讲到了卷积，之前没有很好理解，趁此做一个总结。</p>
-<h2 id="定义：">定义：</h2><p>定义一种卷积运算，将两个函数$g(x)$与$f(x)$通过该运算得到$h(x)$</p>
+        <span itemprop="articleBody"><p>对卷积内容的一些学习和整理，从基本的图像滤波到CNN，供备忘和交流，个别图借用了自动化所董老师的课件。</p>
+<h2 id="一、卷积">一、卷积</h2><h3 id="1-_定义：">1. 定义：</h3><p>定义一种卷积运算，将两个函数$g(x)$与$f(x)$通过该运算得到$h(x)$</p>
 <ul>
 <li>卷积有多重解释。泛函中解释为两个函数生成第三个函数的数学算子；概率论解释为两变量叠加的概率密度等，这些解释的特点是两个卷积函数地位是相同的，对应$(f\otimes g) (x) = (g\otimes f) (x)$，具体也有推导，我们不详细研究。</li>
 <li>这里主要从图像处理和信号方面理解，所以区分原函数与响应函数会比较直观。</li>
 </ul>
-<h2 id="公式：">公式：</h2><p>假设$f(x)$为原函数，$g(x)$为卷积函数，$h(x)$为卷积运算后新生成的函数</p>
+<h3 id="2-_公式：">2. 公式：</h3><p>假设$f(x)$为原函数，$g(x)$为卷积函数，$h(x)$为卷积运算后新生成的函数；<br>注意：积分和累加的范围实际是卷积函数$g(x)$的定义域。<br>
+- 一维连续： 
+$$
+h(x) = \int g(\tau)f(x-\tau)d\tau
+$$
+- 一维离散：
+$$
+h(x) = \sum_\tau g(\tau)f(x-\tau)
+$$
+</p>
 <ul>
-<li>一维连续：<br>$$<br>h(x) = \int_{-\infty} ^ \infty g(\tau)f(x-\tau)d\tau<br>$$</li>
-<li>一维离散：<br>$$<br>h(x) = \sum_\tau ^ \infty g(\tau)f(x-\tau)<br>$$</li>
 <li>从公式理解：<ul>
-<li>无限多的离散点就构成了连续，两公式所含意义相同。但往往通过离散公式举例更容易理解。</li>
-<li>谈一下$\tau$。卷积可以理解为<strong>对冲击响应的持续叠加</strong>，比如向水中投石头的例子，那这里$-\tau$代表的是时间维度上的残余影响，及过去的单位刺激（负的时间）对现在的的影响，也就是所谓的”翻转”。</li>
+<li>无限多的离散点就构成了连续，两公式所含意义相同，大多问题是连续存在的。注意这里从卷积函数$g(x)$却别离散与连续。</li>
+<li>从公式角度谈一下$\tau$。卷积可以理解为<strong>对冲击响应的持续叠加</strong>。现在我们求的是$h(x)$的值，这一点的值由所有这点之前和之后的值对这点的影响叠加而成。把$x$理解成时间维度，这里$f(x-\tau)$定位到$x$点之前$\tau$的时间，$g(\tau)$表示该时间的卷积函数对x点影响，积分或叠加所有这些影响，得到$h(x)$的值。（形象理解可以看图下面引的例子）</li>
 </ul>
 </li>
 </ul>
-<h2 id="图像：">图像：</h2><p>四幅图对照下文，分别解释了离散和连续情况的卷积运算,后三幅图的三个函数图像分别为原函数$f(x)$，卷积响应函数$g(x)$，和最终卷积运算的结果$h(x)$。<br>其中图1直接取自百度，图2-4是用matplotlib绘成，使用离散点模拟的连续函数。</p>
-<table border="1" align="center"><span style="font-size:24px;color:#006600;"></span><br><caption align="top">函数图像</caption><br><tr><td>图一<img src="http://7xjz3b.com1.z0.glb.clouddn.com/juanji1.jpg" width="300" height="200" alt="" align="center"></td> <td>图2<img src="http://7xjz3b.com1.z0.glb.clouddn.com/figure_3.png" width="300" height="200" alt="" align="center"></td> </tr><br><tr><td>图3<img src="http://7xjz3b.com1.z0.glb.clouddn.com/figure_1.png" width="300" height="200" alt="" align="center"></td> <td>图4<img src="http://7xjz3b.com1.z0.glb.clouddn.com/figure_2.png" width="300" height="200" alt="" align="center"></td> </tr><br></table>  
+<h3 id="3-函数图像：">3.函数图像：</h3><p>四幅图对照下文，分别解释了离散和连续情况的卷积运算,后三幅图的三个函数图像分别为原函数$f(x)$，卷积响应函数$g(x)$，和最终卷积运算的结果$h(x)$。<br>其中图1直接取自百度，图2-4是用matplotlib绘成，使用离散点模拟的连续函数。</p>
+<table border="1" align="center"><span style="font-size:24px;color:#006600;"></span><caption align="top">函数图像</caption><br><tr><td>图一<img src="http://7xjz3b.com1.z0.glb.clouddn.com/juanji1.jpg" width="300" height="200" alt="" align="center"></td> <td>图2<img src="http://7xjz3b.com1.z0.glb.clouddn.com/figure_3.png" width="300" height="200" alt="" align="center"></td> </tr><br><tr><td>图3<img src="http://7xjz3b.com1.z0.glb.clouddn.com/figure_1.png" width="300" height="200" alt="" align="center"></td> <td>图4<img src="http://7xjz3b.com1.z0.glb.clouddn.com/figure_2.png" width="300" height="200" alt="" align="center"></td> </tr><br></table>  
 
-<h2 id="解释：">解释：</h2><p>对卷积的理解很多，比较有直观的有<a href="http://www.zhihu.com/question/22298352" target="_blank" rel="external">打拳</a>、<a href="http://www.zhihu.com/question/20500497" target="_blank" rel="external">向水中投石</a>这两个例子。这些例子有几个共同的特点：</p>
+<h4 id="图像解释：">图像解释：</h4><p>对卷积的理解很多，比较有直观的有<a href="http://www.zhihu.com/question/22298352" target="_blank" rel="external">打拳</a>、<a href="http://www.zhihu.com/question/20500497" target="_blank" rel="external">向水中投石</a>这两个例子。这些例子有几个共同的特点：</p>
 <ul>
 <li>都有一个单位刺激的响应函数。如打一拳引起的疼痛，投一个石头引起的水花；</li>
-<li>若力度相同（或是石头重量一致），原函数都是$f(x)=1$。把时间推移理解为横轴x；如果拳头的力量或是石头的大小有改变，则原函数$f(x)$变为图4中有波动的原函数。</li>
+<li>若力度相同（或是石头重量一致），原函数都是$f(x)=1$。把时间推移理解为横轴X；如果拳头的力量或是石头的大小有改变，则原函数$f(x)$变为图4中有波动的原函数。</li>
 <li>例子中每个时间点观察的结果都是前面所有时间单位响应到目前结果的叠加，与卷积运算得出新函数的意义相同。</li>
 <li>都是以离散点举例，最后想象无限多个点，进而演变成连续的解释。</li>
 </ul>
-<p>结合函数图像来理解，离散的情况如图1，连续情况如图2,3,4。在图2中，g(x)单位高斯函数，在原函数f(x)的上的卷积运算，用引用的帖子中总结概括：<strong>各个时间点上的单位响应的加权叠加</strong>。这里的加权，就是指的原函数f(x)中的函数值。</p>
-<h2 id="我的理解：">我的理解：</h2><ul>
-<li>理解x轴为时间尺度，如果原函数是$f(x)$，响应函数$g(x)$是（0，1）这个点，那么卷积计算结果$h(x) = g(x) \otimes f(x)$的卷积结果是原函数$f(x)$。这是因为响应函数只存在于一点，所以，不会对后面的时间有影响，所以不存在随x轴的叠加————证明了叠加性（图2）</li>
-<li>如果原函数f(x)是一个常数函数，那么无论单位响应函数形式如何，最后的卷积结果h(x)一定会趋向不变。这是因为原函数值不变，所以权值相同，时间尺度上的叠加都相同，所以函数值稳定后会不变———证明了加权（图3）。</li>
+<p>结合函数图像来理解，离散的情况如<strong>图1</strong>，连续情况如<strong>图2,3,4</strong>。在<strong>图2</strong>中，$g(x)$单位高斯函数，在原函数$f(x)$的上的卷积运算.<br>用引用的帖子中总结概括：<strong>各个时间点上的单位响应的加权叠加</strong>。这里的加权，就是指的原函数$f(x)$中的函数值。</p>
+<h3 id="4-_总结：">4. 总结：</h3><ul>
+<li>理解$X$轴为时间尺度，如果原函数是$f(x)$，响应函数$g(x)$是（0，1）这个点，那么卷积计算结果$h(x) = g(x) \otimes f(x)$的卷积结果是原函数$f(x)$。这是因为响应函数只存在于一点，所以，不会对后面的时间有影响，所以不存在随x轴的叠加————<strong>证明了叠加性</strong>（图2）</li>
+<li>如果原函数$f(x)$是一个常数函数，那么无论响应函数形式如何，最后的卷积结果$h(x)$一定会趋向不变。这是因为原函数值不变，权值相同，时间尺度上的叠加都相同，所以函数值稳定后会不变———<strong>证明了加权性</strong>（图3）。</li>
 </ul>
-<p>总结一下: <strong>卷积运算可以理解成以原函数$f(x)$为尺度，以响应函数$g(x)$为单位的，随时间尺度的叠加。</strong></p>
-<h2 id="图像处理的卷积：">图像处理的卷积：</h2><p>在图像中，卷积的使用方式主要是卷积模板的形式。原始的图像可以看做二维数字信号，则可以看做原始图像每个像素与固定长宽的卷积模板做卷积运算。<br>$$<br>G(x,y) \otimes I(x,y) = \sum_{u=-M}^M \sum_{v=-N}^N G(u,v)I(x-u,y-v)<br>$$<br>其中$I(x,y)$代表图像中每一个像素，$G(u,v)$表示尺寸为(2M+1)*(2N+1)的模板<br><img src="http://7xjz3b.com1.z0.glb.clouddn.com/juanji5.jpg" alt=""><br>这些卷积模板是对连续卷积核函数的数字采样近似，相当于上面用离散点近似连续卷积函数。<br>不同的模板决定了卷积的不同功能：去噪，平滑，匹配等。</p>
-<h2 id="End-">End.</h2><p>国内的理解与言论貌似只有知乎值得一看，想得到一些更直观的理解时，这里的看法往往独到且深入。而像百度百科、各种博客等大众性解释确误导性严重，看来普及性和质量往往难以共存。</p>
+<p>总结:<br><strong>一维卷积运算可以理解成以原函数值$f(x)$为尺度，以响应函数$g(x)$为单位，在$x$轴方向上的的叠加。</strong></p>
+<h3 id="5-_卷积运算特性">5. 卷积运算特性</h3><h4 id="1-_$\frac{\partial}{\partial{x}}(h\otimes{f})_=_(\frac{\partial}{\partial{x}}h)\otimes{}f$">1. $\frac{\partial}{\partial{x}}(h\otimes{f}) = (\frac{\partial}{\partial{x}}h)\otimes{}f$</h4><p>证明：<br>$$<br>\frac{d}{dt}[h(t)\otimes f(t)] = \frac{d}{dt}\int{f(\tau)h(t-\tau)}d\tau = \int{f(\tau)\frac{d}{dt}h(t-\tau)d\tau} = f(t)\otimes \frac{d}{dt}h(t)<br>$$<br>这个特性可以简化图像处理的运算，将多个步骤融合成一个卷积模板，比如LOG，如下图示意。</p>
+<table border="1" align="center"><span style="font-size:24px;color:#006600;"></span><br><caption align="top"></caption><br><tr><td><img src="http://7xjz3b.com1.z0.glb.clouddn.com/juanji6.jpg" width="600" height="300" alt="" align="center"></td> <td><img src="http://7xjz3b.com1.z0.glb.clouddn.com/juanji7.jpg" width="600" height="300" alt="" align="center"></td> </tr><br></table>  
+
+<h2 id="二、图像处理的卷积：">二、图像处理的卷积：</h2><p>简单谈谈图像卷积应用中的自己的理解。<br>在图像中，卷积的使用方式主要是卷积核，也就是一个卷积模板。原始的图像是一个2D数字信号，应用一个2D卷积模板，可以看做原始图像每个像素与固定长宽的卷积模板做卷积运算，相当于对图像进行一次滤波。<br>
+$$
+G(x,y) \otimes I(x,y) = \sum_{u=-M}^M \sum_{v=-N}^N G(u,v)I(x-u,y-v)
+$$
+其中$I(x,y)$代表图像中每一个像素，$G(u,v)$表示尺寸为(2M+1)*(2N+1)的模板
+<br><img src="http://7xjz3b.com1.z0.glb.clouddn.com/juanji5.jpg" alt=""></p>
+<h3 id="关于卷积核">关于卷积核</h3><h4 id="1-_卷积函数与卷积核：">1. 卷积函数与卷积核：</h4><ol>
+<li>卷积的定义是基于函数的，原始的卷积核模板上所有位置都对应同一个函数。</li>
+<li>实际使用中，我们常使用是某一函数的近似模板，模板上每个位置都有一个常数值。这种模板主要体现形状近似于卷积函数，计算也较为方便。</li>
+</ol>
+<h4 id="2-_模板的特点">2. 模板的特点</h4><ul>
+<li>模板大小：一般卷积近似模板都是奇数个，如$3*3,5*5$等，这样每个模板有一个中心点，也有半径，大小的区别在于<strong>对于单点被模板考虑的像素数的多少</strong>。</li>
+<li>模板上所有元素的加和：<ul>
+<li>模板上所有元素（即卷积矩阵）的加和不同决定了模板的作用。当加和为1时，卷积计算前后图像的亮度不变。    </li>
+<li>检测边缘的卷积模板的加和往往为0，因为这些模板只是为了检测边缘，只关注像素之间的梯度关系，与像素值无关，无需原来像素点的像素。应用的结果是图像的亮度变得很暗。</li>
+</ul>
+</li>
+<li>这些卷积模板是对连续卷积核函数的数字采样近似，相当于上面用离散点近似连续卷积函数。不同的卷积模板决定了卷积的不同功能：去噪，平滑，凸显某些特征等，不详细叙述。</li>
+</ul>
+<h4 id="3-_卷积运算的一种加速思想">3. 卷积运算的一种加速思想</h4>
+形如高斯核函数,$\sigma$为窗宽，决定平滑尺度：
+$$
+G_\sigma(x,y) = \frac{1}{\sqrt{2\pi\sigma^2}}exp(-\frac{x^2+y^2}{2\sigma^2})
+$$
+忽略规范化系数$\sqrt{2\pi\sigma^2}$：
+$$
+G_\sigma(x,y) = exp(\frac{-x^2}{2\sigma^2})exp(\frac{-y^2}{2\sigma^2})
+$$
+通过(2M+1)*(2N+1)的模板g(x,y)应用到图像中：
+$$
+\begin{align*}
+g(x,y)\otimes I(x,y) &=\sum_{u=-M}^M \sum_{v=-N}^N g(u,v)I(x-u,y-v)\\&= \sum_{u=-M}^M \sum_{v=-N}^N exp(\frac{-u^2}{2\sigma^2})exp(\frac{-v^2}{2\sigma^2})I(x-u,y-v)\\
+&=\sum_{u=-M}^M exp(\frac{-u^2}{2\sigma^2})[\sum_{v=-N}^Nexp(\frac{-v^2}{2\sigma^2})I(x-u,y-v)]
+\end{align*}
+$$
+
+通过公式可以看出，假设原始图像大小为$A*B$, 模板大小为$M*N$，正常需要计算$A*B*M*N$次，现在转化为计算 $(M+N)*A*B $次，大大减小了运算时间。
+
+<p>如图:<br><img src="http://7xjz3b.com1.z0.glb.clouddn.com/juanji8.jpg" alt=""></p>
+<h2 id="End-">End.</h2><p>对知识的理解上，国内的知乎值得一看，看法往往独到且深入。不过有时百度百科、各种博客等大众性解释有很大的导性，看来普及性和质量往往难以共存。</p>
+<p>Robin<br>November 11, 2015 10:57 PM    初写<br>January 7, 2016 9:56 PM   修改卷积公式描述，补充卷积性质<br>January 13, 2016 10:08 AM 增加卷积模板的加速运算。<br>February 22, 2016 3:07 PM 补充图像卷积核的一些特点。</p>
 </span>
       
     </div>
@@ -378,7 +430,7 @@
           
             <a href="/tags/卷积/" rel="tag">#卷积</a>
           
-            <a href="/tags/图像处理/" rel="tag">#图像处理</a>
+            <a href="/tags/计算机视觉/" rel="tag">#计算机视觉</a>
           
         </div>
       
@@ -450,8 +502,8 @@
         
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2015/11/17/卷积的理解/"
-           data-title="卷积的理解" data-url="http://robinzheng.com/2015/11/17/卷积的理解/">
+      <div class="ds-thread" data-thread-key="2015/11/17/卷积的理解与图像处理中的应用/"
+           data-title="卷积的理解与图像处理中的应用" data-url="http://robinzheng.com/2015/11/17/卷积的理解与图像处理中的应用/">
       </div>
     
   </div>
@@ -495,7 +547,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-count">10</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -575,6 +627,10 @@
               </span>
             
               <span class="links-of-author-item">
+                <a href="http://ohso.me" target="_blank">xy</a>
+              </span>
+            
+              <span class="links-of-author-item">
                 <a href="http://www.sdu.edu.cn" target="_blank">山东大学</a>
               </span>
             
@@ -601,7 +657,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#定义："><span class="nav-number">1.</span> <span class="nav-text">定义：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#公式："><span class="nav-number">2.</span> <span class="nav-text">公式：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图像："><span class="nav-number">3.</span> <span class="nav-text">图像：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解释："><span class="nav-number">4.</span> <span class="nav-text">解释：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#我的理解："><span class="nav-number">5.</span> <span class="nav-text">我的理解：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图像处理的卷积："><span class="nav-number">6.</span> <span class="nav-text">图像处理的卷积：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#End-"><span class="nav-number">7.</span> <span class="nav-text">End.</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、卷积"><span class="nav-number">1.</span> <span class="nav-text">一、卷积</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-_定义："><span class="nav-number">1.1.</span> <span class="nav-text">1. 定义：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-_公式："><span class="nav-number">1.2.</span> <span class="nav-text">2. 公式：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-函数图像："><span class="nav-number">1.3.</span> <span class="nav-text">3.函数图像：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#图像解释："><span class="nav-number">1.3.1.</span> <span class="nav-text">图像解释：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-_总结："><span class="nav-number">1.4.</span> <span class="nav-text">4. 总结：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-_卷积运算特性"><span class="nav-number">1.5.</span> <span class="nav-text">5. 卷积运算特性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-_$\frac{\partial}{\partial{x}}(h\otimes{f})_=_(\frac{\partial}{\partial{x}}h)\otimes{}f$"><span class="nav-number">1.5.1.</span> <span class="nav-text">1. $\frac{\partial}{\partial{x}}(h\otimes{f}) = (\frac{\partial}{\partial{x}}h)\otimes{}f$</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、图像处理的卷积："><span class="nav-number">2.</span> <span class="nav-text">二、图像处理的卷积：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#关于卷积核"><span class="nav-number">2.1.</span> <span class="nav-text">关于卷积核</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-_卷积函数与卷积核："><span class="nav-number">2.1.1.</span> <span class="nav-text">1. 卷积函数与卷积核：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-_模板的特点"><span class="nav-number">2.1.2.</span> <span class="nav-text">2. 模板的特点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-_卷积运算的一种加速思想"><span class="nav-number">2.1.3.</span> <span class="nav-text">3. 卷积运算的一种加速思想</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#End-"><span class="nav-number">3.</span> <span class="nav-text">End.</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
@@ -621,8 +677,8 @@
       <div class="footer-inner">
         <div class="copyright" >
   
-  &copy; 
-  <span itemprop="copyrightYear">2015</span>
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
   <span class="with-love">
     <i class="icon-next-heart fa fa-heart"></i>
   </span>

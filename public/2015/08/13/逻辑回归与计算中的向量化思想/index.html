@@ -68,7 +68,7 @@
 向量化计算的思想在逻辑回归代码中体现的很好，利用矩阵计算上的便利性来解决复杂的循环过程。但由于《实战》书中的原理推导及其吝惜笔墨（与其简洁优美的代码对比鲜明），这里做一下补充。
 感谢洞">
 <meta property="og:image" content="http://7xjz3b.com1.z0.glb.clouddn.com/blog4-1.png">
-<meta property="og:updated_time" content="2015-12-06T10:19:47.000Z">
+<meta property="og:updated_time" content="2016-02-24T08:02:25.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="逻辑回归与计算中的向量化思想">
 <meta name="twitter:description" content="引子
@@ -357,7 +357,7 @@
 </ul>
 <p>sigmoid的函数值可以表示成分类概率：<br>\begin{equation*}<br>\begin{aligned}<br>P(y=1|x,\theta) &amp; = h_\theta(x) \\<br>P(y=0|x,\theta) &amp; = 1-h_\theta(x)<br>\end{aligned}<br>\end{equation*}</p>
 <ul>
-<li>2、通过最大斯然估计求发生概率，同时可构造损失函数：<br>$$<br>P(y|x,\theta)=(h_{\theta}(x))^y(1-h_{\theta}(x))^{1-y}<br>$$<br>取似然函数：
+<li>2、通过最大斯然估计求发生概率，单个样本发生的概率为：<br>$$<br>P(y|x,\theta)=(h_{\theta}(x))^y(1-h_{\theta}(x))^{1-y}<br>$$<br>最大似然估计，让所有样本的发生概率最大化，取似然函数：
 $$
 L(\theta)  = \prod_{i=1}^nP(y_i|x_i,\theta) = \prod_{i=1}^n (h_{\theta}(x_i))^{y_i}(1-h_{\theta}(x_i))^{1-y_i}
 $$
@@ -595,7 +595,7 @@ x_1^{(m)}e_1,x_2^{(m)}e_2+...+x_n^{(m)}e_n
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-count">10</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -675,6 +675,10 @@ x_1^{(m)}e_1,x_2^{(m)}e_2+...+x_n^{(m)}e_n
               </span>
             
               <span class="links-of-author-item">
+                <a href="http://ohso.me" target="_blank">xy</a>
+              </span>
+            
+              <span class="links-of-author-item">
                 <a href="http://www.sdu.edu.cn" target="_blank">山东大学</a>
               </span>
             
@@ -721,8 +725,8 @@ x_1^{(m)}e_1,x_2^{(m)}e_2+...+x_n^{(m)}e_n
       <div class="footer-inner">
         <div class="copyright" >
   
-  &copy; 
-  <span itemprop="copyrightYear">2015</span>
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
   <span class="with-love">
     <i class="icon-next-heart fa fa-heart"></i>
   </span>

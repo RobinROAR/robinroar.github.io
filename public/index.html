@@ -282,6 +282,120 @@
             
               
                 
+                <a class="post-title-link" href="/2015/12/29/从Adaboost谈谈几种使用权值的方法/" itemprop="url">
+                  从AdaBoost谈谈基于权值的投票方法
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2015-12-29T15:51:34+08:00" content="2015-12-29">
+              2015-12-29
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/理论/" itemprop="url" rel="index">
+                    <span itemprop="name">理论</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/12/29/从Adaboost谈谈几种使用权值的方法/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/29/从Adaboost谈谈几种使用权值的方法/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+            这周计算机视觉课在讲运动分析时重温了AdaBoost方法，感觉比之前的理解又深入了些，在这里谈谈体会。
+AdaBoostBoosting思想通过融合多个弱分类器，用加权投票的方式构建一个准确率更高的强分类器。
+
+弱分类器：准确率大于0.5,即仅比随机猜测略好
+强分类器：准确率高，并能在多项式时间（计算时间$m(n)=O(n^k)$,k为常数）内解决问题。
+
+理论依据
+A general lower bound on the number of examples needed for learni
+            ...
+          </span>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/12/29/从Adaboost谈谈几种使用权值的方法/#more" rel="contents">
+              更多 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2015/12/11/从相机投影模型谈谈矩阵组成/" itemprop="url">
                   从相机投影模型谈谈矩阵组成
                 </a>
@@ -298,6 +412,21 @@
             </time>
           </span>
 
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/理论/" itemprop="url" rel="index">
+                    <span itemprop="name">理论</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
           
 
           
@@ -327,8 +456,12 @@
         
           <span itemprop="articleBody">
             
-            
-            
+            部分插图来自自动化所CV讲义课件。
+1. 引子这里主要从相机成像的过程入手，解析相机将三维世界中的真实物体转换成照片底片上的二维图像的具体过程，重点是坐标系的转换，同时对投影矩阵进行拆解，以更好的理解矩阵的意义。
+依赖知识这些和主题并无太大关系，但有必要稍加解释和记录。
+齐次坐标：齐次坐标是在欧式坐标后面加上泛化的常数项，是一种坐标定义形式。主要为了在射影空间的相关应用，以及简化矩阵计算。通常在坐标转换中我们都是用齐次坐标。详细的介绍可以参见这里
+相机的内参数每台相机虽然都标注了焦距等信息，但这
+            ...
           </span>
           <div class="post-more-link text-center">
             <a class="btn" href="/2015/12/11/从相机投影模型谈谈矩阵组成/#more" rel="contents">
@@ -434,18 +567,12 @@
         
           <span itemprop="articleBody">
             
-            如果对线性代数有一定理解，容易发现不同的矩阵其实就代表各种变换；若把矩阵看成多个列向量的罗列，则更容易理解。这里简单总结几种常见的二维变换，及对应的矩阵方程。
+            矩阵其实代表一种线性变换，是理解线性代数的核心之一。而线性变换有着各种各样的用途，所以矩阵这种人造产物又有了许多新的意义。不同的矩阵代表不同变换，许多变换都有统一的特征，可以归为一类；若把矩阵看成多个列向量的罗列，则更容易理解。这里简单总结几种常见的二维变换，及对应的矩阵方程。
 齐次坐标将各种的变换表达成矩阵的形式，需要引入齐次坐标 Homogeneous coordinates的概念。
 
 构建齐次坐标：在普通坐标中增加一个泛化的常数项，一般为1。 
 $$
-二维：(x,y)\Rightarrow\left(\begin{array}{c}
-x \\
-y \\
-1
-\end{array}
-\right),
-\qua
+二维：(x,y)\Rightarrow
             ...
           </span>
           <div class="post-more-link text-center">
@@ -492,8 +619,8 @@ y \\
             
               
                 
-                <a class="post-title-link" href="/2015/11/17/卷积的理解/" itemprop="url">
-                  卷积的理解
+                <a class="post-title-link" href="/2015/11/17/卷积的理解与图像处理中的应用/" itemprop="url">
+                  卷积的理解与图像处理中的应用
                 </a>
               
             
@@ -529,8 +656,8 @@ y \\
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/11/17/卷积的理解/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/11/17/卷积的理解/" itemprop="commentsCount"></span>
+                <a href="/2015/11/17/卷积的理解与图像处理中的应用/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/11/17/卷积的理解与图像处理中的应用/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -552,17 +679,15 @@ y \\
         
           <span itemprop="articleBody">
             
-            最近计算机视觉课上讲到了卷积，之前没有很好理解，趁此做一个总结。
-定义：定义一种卷积运算，将两个函数$g(x)$与$f(x)$通过该运算得到$h(x)$
+            对卷积内容的一些学习和整理，从基本的图像滤波到CNN，供备忘和交流，个别图借用了自动化所董老师的课件。
+一、卷积1. 定义：定义一种卷积运算，将两个函数$g(x)$与$f(x)$通过该运算得到$h(x)$
 
 卷积有多重解释。泛函中解释为两个函数生成第三个函数的数学算子；概率论解释为两变量叠加的概率密度等，这些解释的特点是两个卷积函数地位是相同的，对应$(f\otimes g) (x) = (g\otimes f) (x)$，具体也有推导，我们不详细研究。
-这里主要从图像处理和信号方面理解，所以区分原函数与响应函数会比较直观。
-
-公式：假设$f(x
+这里主要从图像处理和信号方面理解，所以区
             ...
           </span>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2015/11/17/卷积的理解/#more" rel="contents">
+            <a class="btn" href="/2015/11/17/卷积的理解与图像处理中的应用/#more" rel="contents">
               更多 &raquo;
             </a>
           </div>
@@ -1301,7 +1426,7 @@ Scikt-learn Example：Color Quantization using K-Means通过k-Means进行图像�
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-count">10</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1381,6 +1506,10 @@ Scikt-learn Example：Color Quantization using K-Means通过k-Means进行图像�
               </span>
             
               <span class="links-of-author-item">
+                <a href="http://ohso.me" target="_blank">xy</a>
+              </span>
+            
+              <span class="links-of-author-item">
                 <a href="http://www.sdu.edu.cn" target="_blank">山东大学</a>
               </span>
             
@@ -1410,8 +1539,8 @@ Scikt-learn Example：Color Quantization using K-Means通过k-Means进行图像�
       <div class="footer-inner">
         <div class="copyright" >
   
-  &copy; 
-  <span itemprop="copyrightYear">2015</span>
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
   <span class="with-love">
     <i class="icon-next-heart fa fa-heart"></i>
   </span>

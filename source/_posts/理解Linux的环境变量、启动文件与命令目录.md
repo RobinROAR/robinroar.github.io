@@ -134,7 +134,7 @@ robin@esp:~$ echo $varname           显示，无值
 与上面相同，/bin目录中也是系统命令，是一些较为普通的基本指令，一般来说管理员和普通用户都可以使用/bin目录下的命令。
 主要包括cat、cp、chmod df、dmesg、gzip、kill、ls、mkdir、more、mount、rm、su、tar等。
 ###/usr/sbin:
-该目录主要存放依稀用用户资助安装的系统管理程序。
+该目录主要存放一些用户自主安装的系统管理程序。
 包括dhcpd、httpd、imap、in.*d、inetd、lpd、named、netconfig、nmbd、samba、sendmail、squid、swap、tcpd、tcpdump等。
 ###/usr/bin：
 这个目录的内容就比较广泛，基本包括了用户安装的各种软件运行脚本以及执行命令。

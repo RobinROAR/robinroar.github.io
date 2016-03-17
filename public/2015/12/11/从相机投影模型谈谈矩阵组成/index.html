@@ -35,7 +35,7 @@
 <link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="矩阵,计算机视觉," />
 
 
 
@@ -53,16 +53,25 @@
 
 
 
-<meta name="description" content="不要总想一蹴而就；即使有幸一次成功，也应感谢上帝对你的恩赐">
+<meta name="description" content="部分插图来自自动化所CV讲义课件。
+1. 引子这里主要从相机成像的过程入手，解析相机将三维世界中的真实物体转换成照片底片上的二维图像的具体过程，重点是坐标系的转换，同时对投影矩阵进行拆解，以更好的理解矩阵的意义。
+依赖知识这些和主题并无太大关系，但有必要稍加解释和记录。
+齐次坐标：齐次坐标是在欧式坐标后面加上泛化的常数项，是一种坐标定义形式。主要为了在射影空间的相关应用，以及简化矩阵计算。通常在坐">
 <meta property="og:type" content="article">
 <meta property="og:title" content="从相机投影模型谈谈矩阵组成">
 <meta property="og:url" content="http://robinzheng.com/2015/12/11/从相机投影模型谈谈矩阵组成/index.html">
 <meta property="og:site_name" content="Lion's Pride Inn   - Robin's blog">
-<meta property="og:description" content="不要总想一蹴而就；即使有幸一次成功，也应感谢上帝对你的恩赐">
-<meta property="og:updated_time" content="2015-12-11T06:56:07.000Z">
+<meta property="og:description" content="部分插图来自自动化所CV讲义课件。
+1. 引子这里主要从相机成像的过程入手，解析相机将三维世界中的真实物体转换成照片底片上的二维图像的具体过程，重点是坐标系的转换，同时对投影矩阵进行拆解，以更好的理解矩阵的意义。
+依赖知识这些和主题并无太大关系，但有必要稍加解释和记录。
+齐次坐标：齐次坐标是在欧式坐标后面加上泛化的常数项，是一种坐标定义形式。主要为了在射影空间的相关应用，以及简化矩阵计算。通常在坐">
+<meta property="og:updated_time" content="2016-01-19T06:13:20.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="从相机投影模型谈谈矩阵组成">
-<meta name="twitter:description" content="不要总想一蹴而就；即使有幸一次成功，也应感谢上帝对你的恩赐">
+<meta name="twitter:description" content="部分插图来自自动化所CV讲义课件。
+1. 引子这里主要从相机成像的过程入手，解析相机将三维世界中的真实物体转换成照片底片上的二维图像的具体过程，重点是坐标系的转换，同时对投影矩阵进行拆解，以更好的理解矩阵的意义。
+依赖知识这些和主题并无太大关系，但有必要稍加解释和记录。
+齐次坐标：齐次坐标是在欧式坐标后面加上泛化的常数项，是一种坐标定义形式。主要为了在射影空间的相关应用，以及简化矩阵计算。通常在坐">
 
 
 
@@ -280,6 +289,21 @@
           </span>
 
           
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/理论/" itemprop="url" rel="index">
+                    <span itemprop="name">理论</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
 
           
             
@@ -305,11 +329,32 @@
       
 
       
-        <span itemprop="articleBody"></span>
+        <span itemprop="articleBody"><p>部分插图来自自动化所CV讲义课件。</p>
+<h2 id="1-_引子">1. 引子</h2><p>这里主要从相机成像的过程入手，解析相机将<strong>三维世界中的真实物体转换成照片底片上的二维图像</strong>的具体过程，重点是坐标系的转换，同时对投影矩阵进行拆解，以更好的理解矩阵的意义。</p>
+<h3 id="依赖知识">依赖知识</h3><p>这些和主题并无太大关系，但有必要稍加解释和记录。</p>
+<h4 id="齐次坐标：">齐次坐标：</h4><p>齐次坐标是在欧式坐标后面加上泛化的常数项，是一种坐标定义形式。主要为了在射影空间的相关应用，以及简化矩阵计算。通常在坐标转换中我们都是用齐次坐标。详细的介绍可以参见<a href="http://robinzheng.com/2015/11/27/%E5%87%A0%E7%A7%8D%E4%BA%8C%E7%BB%B4%E5%8F%98%E6%8D%A2%E5%92%8C%E5%AF%B9%E5%BA%94%E7%9A%84%E7%9F%A9%E9%98%B5%E8%A1%A8%E7%A4%BA/">这里</a></p>
+<h4 id="相机的内参数">相机的内参数</h4><p>每台相机虽然都标注了焦距等信息，但这些信息是一个大概值，并不准确。每台相机很多自己的具体属性，主要包括<strong>光心位置，焦距，单位像素长宽，畸变值</strong>，我们称之为内参数，构成的矩阵叫<strong>内参数矩阵</strong>,这些值虽然微小，但也可以直接影响投影的结果</p>
+<ul>
+<li>焦距f：焦距指的是焦点到光心的距离。</li>
+<li>畸变值s:</li>
+<li>光心位置：</li>
+<li>单位像素长宽：<h4 id="其他相机属性：">其他相机属性：</h4></li>
+<li>景深：</li>
+<li>视角：与焦距f和胶片尺寸d有关。公式：<h4 id="小孔成像模型：">小孔成像模型：</h4>小孔成像原理小时的自然课就曾接触过，这里主要讲一下</li>
+</ul>
+<h2 id="2-_相机投影模型">2. 相机投影模型</h2><h3 id="相机几何">相机几何</h3><h3 id="未写完">未写完</h3></span>
       
     </div>
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/矩阵/" rel="tag">#矩阵</a>
+          
+            <a href="/tags/计算机视觉/" rel="tag">#计算机视觉</a>
+          
+        </div>
       
 
       
@@ -323,6 +368,10 @@
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/12/29/从Adaboost谈谈几种使用权值的方法/" rel="prev" title="从AdaBoost谈谈基于权值的投票方法">
+                从AdaBoost谈谈基于权值的投票方法 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -420,7 +469,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-count">10</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -500,6 +549,10 @@
               </span>
             
               <span class="links-of-author-item">
+                <a href="http://ohso.me" target="_blank">xy</a>
+              </span>
+            
+              <span class="links-of-author-item">
                 <a href="http://www.sdu.edu.cn" target="_blank">山东大学</a>
               </span>
             
@@ -526,7 +579,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-_引子"><span class="nav-number">1.</span> <span class="nav-text">1. 引子</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#依赖知识"><span class="nav-number">1.1.</span> <span class="nav-text">依赖知识</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#齐次坐标："><span class="nav-number">1.1.1.</span> <span class="nav-text">齐次坐标：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#相机的内参数"><span class="nav-number">1.1.2.</span> <span class="nav-text">相机的内参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#其他相机属性："><span class="nav-number">1.1.3.</span> <span class="nav-text">其他相机属性：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#小孔成像模型："><span class="nav-number">1.1.4.</span> <span class="nav-text">小孔成像模型：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-_相机投影模型"><span class="nav-number">2.</span> <span class="nav-text">2. 相机投影模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#相机几何"><span class="nav-number">2.1.</span> <span class="nav-text">相机几何</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#未写完"><span class="nav-number">2.2.</span> <span class="nav-text">未写完</span></a></li></ol></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
@@ -546,8 +599,8 @@
       <div class="footer-inner">
         <div class="copyright" >
   
-  &copy; 
-  <span itemprop="copyrightYear">2015</span>
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
   <span class="with-love">
     <i class="icon-next-heart fa fa-heart"></i>
   </span>

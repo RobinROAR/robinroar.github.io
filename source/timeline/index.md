@@ -1,5 +1,11 @@
 title: Time line
 date: 2015-06-10 18:07:27
+
+---
+###Feb 2016
+**新学期，Do right thing, make right choice at right time**
+February 22, 2016 10:58 AM
+
 ---
 ###Dec 2015
 **这个世界的确没有什么捷径，要么拥有惊人的天赋，要么就做到敏锐的先知先觉。圣诞快乐！**
