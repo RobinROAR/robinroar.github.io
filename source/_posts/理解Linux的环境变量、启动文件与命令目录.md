@@ -64,10 +64,10 @@ PATH变量是我们经常使用和修改的环境变量，它定义了`提供命
     $ echo $PATH
     /usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games    #不同值之间由:分割
 ```
-- 添加值，修改：
+- **添加值，修改**：
 ```bash
-    $ PATH=$PATH:/home/user/test  #添加目录/home/user/test, 只在当前shell有效
-    $ export PATH=.:/HOME/eobin:$PATH     #单点符在PATH变量中代表当前路径，变量名可以放在末尾
+    $  PATH=$PATH:/home/user/test  #添加目录/home/user/test, 只在当前shell有效
+    $  export PATH=.:/HOME/eobin:$PATH     #单点符在PATH变量中代表当前路径，变量名可以放在末尾
 ```
 通常我们把对于PATH变量的改动`写在系统或用户的启动文件中`，比如说~/.bashrc中，在登陆系统或者打开新shell时自动加载。
 

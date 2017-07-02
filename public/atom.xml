@@ -5,7 +5,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://robinzheng.com//"/>
-  <updated>2016-01-16T07:12:49.000Z</updated>
+  <updated>2016-06-29T02:56:14.000Z</updated>
   <id>http://robinzheng.com//</id>
   
   <author>
@@ -16,10 +16,37 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title><![CDATA[【Top】Summery and Navigation]]></title>
+    <link href="http://robinzheng.com/2099/06/16/%5BTop%5DSummery%20and%20Navigation/"/>
+    <id>http://robinzheng.com/2099/06/16/[Top]Summery and Navigation/</id>
+    <published>2099-06-16T22:36:33.000Z</published>
+    <updated>2016-06-29T02:56:14.000Z</updated>
+    <content type="html"><![CDATA[<p>一个导航。不断补充</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>一个导航。不断补充</p>
+]]>
+    </summary>
+    
+      <category term="最优化方法" scheme="http://robinzheng.com/tags/%E6%9C%80%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95/"/>
+    
+      <category term="机器学习" scheme="http://robinzheng.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="矩阵计算" scheme="http://robinzheng.com/tags/%E7%9F%A9%E9%98%B5%E8%AE%A1%E7%AE%97/"/>
+    
+      <category term="统计模型" scheme="http://robinzheng.com/tags/%E7%BB%9F%E8%AE%A1%E6%A8%A1%E5%9E%8B/"/>
+    
+      <category term="计算机视觉" scheme="http://robinzheng.com/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
+    
+      <category term="理论" scheme="http://robinzheng.com/categories/%E7%90%86%E8%AE%BA/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[从AdaBoost谈谈基于权值的投票方法]]></title>
     <link href="http://robinzheng.com/2015/12/29/%E4%BB%8EAdaboost%E8%B0%88%E8%B0%88%E5%87%A0%E7%A7%8D%E4%BD%BF%E7%94%A8%E6%9D%83%E5%80%BC%E7%9A%84%E6%96%B9%E6%B3%95/"/>
     <id>http://robinzheng.com/2015/12/29/从Adaboost谈谈几种使用权值的方法/</id>
-    <published>2015-12-29T07:51:34.000Z</published>
+    <published>2015-12-29T21:51:34.000Z</published>
     <updated>2016-01-16T07:12:49.000Z</updated>
     <content type="html"><![CDATA[<p>这周计算机视觉课在讲运动分析时重温了AdaBoost方法，感觉比之前的理解又深入了些，在这里谈谈体会。</p>
 <h2 id="AdaBoost">AdaBoost</h2><h3 id="Boosting思想">Boosting思想</h3><p>通过融合多个弱分类器，用加权投票的方式构建一个准确率更高的强分类器。</p>
@@ -74,7 +101,7 @@
     <title><![CDATA[从相机投影模型谈谈矩阵组成]]></title>
     <link href="http://robinzheng.com/2015/12/11/%E4%BB%8E%E7%9B%B8%E6%9C%BA%E6%8A%95%E5%BD%B1%E6%A8%A1%E5%9E%8B%E8%B0%88%E8%B0%88%E7%9F%A9%E9%98%B5%E7%BB%84%E6%88%90/"/>
     <id>http://robinzheng.com/2015/12/11/从相机投影模型谈谈矩阵组成/</id>
-    <published>2015-12-11T06:56:07.000Z</published>
+    <published>2015-12-11T20:56:07.000Z</published>
     <updated>2016-01-19T06:13:20.000Z</updated>
     <content type="html"><![CDATA[<p>部分插图来自自动化所CV讲义课件。</p>
 <h2 id="1-_引子">1. 引子</h2><p>这里主要从相机成像的过程入手，解析相机将<strong>三维世界中的真实物体转换成照片底片上的二维图像</strong>的具体过程，重点是坐标系的转换，同时对投影矩阵进行拆解，以更好的理解矩阵的意义。</p>
@@ -107,7 +134,7 @@
     <title><![CDATA[总结几种二维变换和对应的矩阵表示]]></title>
     <link href="http://robinzheng.com/2015/11/27/%E5%87%A0%E7%A7%8D%E4%BA%8C%E7%BB%B4%E5%8F%98%E6%8D%A2%E5%92%8C%E5%AF%B9%E5%BA%94%E7%9A%84%E7%9F%A9%E9%98%B5%E8%A1%A8%E7%A4%BA/"/>
     <id>http://robinzheng.com/2015/11/27/几种二维变换和对应的矩阵表示/</id>
-    <published>2015-11-27T11:53:14.000Z</published>
+    <published>2015-11-28T01:53:14.000Z</published>
     <updated>2015-12-24T09:00:36.000Z</updated>
     <content type="html"><![CDATA[<p><strong>矩阵其实代表一种线性变换</strong>，是理解线性代数的核心之一。而线性变换有着各种各样的用途，所以矩阵这种人造产物又有了许多新的意义。<br>不同的矩阵代表不同变换，许多变换都有统一的特征，可以归为一类；若把矩阵看成多个列向量的罗列，则更容易理解。这里简单总结几种常见的二维变换，及对应的矩阵方程。</p>
 <h2 id="齐次坐标">齐次坐标</h2><p>将各种的变换表达成矩阵的形式，需要引入<strong>齐次坐标 Homogeneous coordinates</strong>的概念。</p>
@@ -328,8 +355,8 @@ $$
     <title><![CDATA[卷积的理解与图像处理中的应用]]></title>
     <link href="http://robinzheng.com/2015/11/17/%E5%8D%B7%E7%A7%AF%E7%9A%84%E7%90%86%E8%A7%A3%E4%B8%8E%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/"/>
     <id>http://robinzheng.com/2015/11/17/卷积的理解与图像处理中的应用/</id>
-    <published>2015-11-17T13:32:28.000Z</published>
-    <updated>2016-02-26T03:03:56.000Z</updated>
+    <published>2015-11-18T03:32:28.000Z</published>
+    <updated>2016-04-05T11:30:55.000Z</updated>
     <content type="html"><![CDATA[<p>对卷积内容的一些学习和整理，从基本的图像滤波到CNN，供备忘和交流，个别图借用了自动化所董老师的课件。</p>
 <h2 id="一、卷积">一、卷积</h2><h3 id="1-_定义：">1. 定义：</h3><p>定义一种卷积运算，将两个函数$g(x)$与$f(x)$通过该运算得到$h(x)$</p>
 <ul>
@@ -353,9 +380,7 @@ $$
 </ul>
 </li>
 </ul>
-<h3 id="3-函数图像：">3.函数图像：</h3><p>四幅图对照下文，分别解释了离散和连续情况的卷积运算,后三幅图的三个函数图像分别为原函数$f(x)$，卷积响应函数$g(x)$，和最终卷积运算的结果$h(x)$。<br>其中图1直接取自百度，图2-4是用matplotlib绘成，使用离散点模拟的连续函数。</p>
-<table border="1" align="center"><span style="font-size:24px;color:#006600;"></span><caption align="top">函数图像</caption><br><tr><td>图一<img src="http://7xjz3b.com1.z0.glb.clouddn.com/juanji1.jpg" width="300" height="200" alt="" align="center"></td> <td>图2<img src="http://7xjz3b.com1.z0.glb.clouddn.com/figure_3.png" width="300" height="200" alt="" align="center"></td> </tr><br><tr><td>图3<img src="http://7xjz3b.com1.z0.glb.clouddn.com/figure_1.png" width="300" height="200" alt="" align="center"></td> <td>图4<img src="http://7xjz3b.com1.z0.glb.clouddn.com/figure_2.png" width="300" height="200" alt="" align="center"></td> </tr><br></table>  
-
+<h3 id="3-函数图像：">3.函数图像：</h3><p>四幅图对照下文，分别解释了离散和连续情况的卷积运算,后三幅图的三个函数图像分别为原函数$f(x)$，卷积响应函数$g(x)$，和最终卷积运算的结果$h(x)$。<br>其中图1直接取自百度，图2-4是用matplotlib绘成，使用离散点模拟的连续函数。<br><img src="/fig/jjdlj/1.jpg" alt=""></p>
 <h4 id="图像解释：">图像解释：</h4><p>对卷积的理解很多，比较有直观的有<a href="http://www.zhihu.com/question/22298352" target="_blank" rel="external">打拳</a>、<a href="http://www.zhihu.com/question/20500497" target="_blank" rel="external">向水中投石</a>这两个例子。这些例子有几个共同的特点：</p>
 <ul>
 <li>都有一个单位刺激的响应函数。如打一拳引起的疼痛，投一个石头引起的水花；</li>
@@ -370,27 +395,40 @@ $$
 </ul>
 <p>总结:<br><strong>一维卷积运算可以理解成以原函数值$f(x)$为尺度，以响应函数$g(x)$为单位，在$x$轴方向上的的叠加。</strong></p>
 <h3 id="5-_卷积运算特性">5. 卷积运算特性</h3><h4 id="1-_$\frac{\partial}{\partial{x}}(h\otimes{f})_=_(\frac{\partial}{\partial{x}}h)\otimes{}f$">1. $\frac{\partial}{\partial{x}}(h\otimes{f}) = (\frac{\partial}{\partial{x}}h)\otimes{}f$</h4><p>证明：<br>$$<br>\frac{d}{dt}[h(t)\otimes f(t)] = \frac{d}{dt}\int{f(\tau)h(t-\tau)}d\tau = \int{f(\tau)\frac{d}{dt}h(t-\tau)d\tau} = f(t)\otimes \frac{d}{dt}h(t)<br>$$<br>这个特性可以简化图像处理的运算，将多个步骤融合成一个卷积模板，比如LOG，如下图示意。</p>
-<table border="1" align="center"><span style="font-size:24px;color:#006600;"></span><br><caption align="top"></caption><br><tr><td><img src="http://7xjz3b.com1.z0.glb.clouddn.com/juanji6.jpg" width="600" height="300" alt="" align="center"></td> <td><img src="http://7xjz3b.com1.z0.glb.clouddn.com/juanji7.jpg" width="600" height="300" alt="" align="center"></td> </tr><br></table>  
+<table border="1" align="center"><span style="font-size:24px;color:#006600;"></span><br><caption align="top"></caption><br><tr><td><img src="/fig/jjdlj/2.jpg" width="600" height="300" alt="" align="center"></td> <td><img src="/fig/jjdlj/3.jpg" width="600" height="300" alt="" align="center"></td> </tr><br></table>  
 
 <h2 id="二、图像处理的卷积：">二、图像处理的卷积：</h2><p>简单谈谈图像卷积应用中的自己的理解。<br>在图像中，卷积的使用方式主要是卷积核，也就是一个卷积模板。原始的图像是一个2D数字信号，应用一个2D卷积模板，可以看做原始图像每个像素与固定长宽的卷积模板做卷积运算，相当于对图像进行一次滤波。<br>
 $$
 G(x,y) \otimes I(x,y) = \sum_{u=-M}^M \sum_{v=-N}^N G(u,v)I(x-u,y-v)
 $$
 其中$I(x,y)$代表图像中每一个像素，$G(u,v)$表示尺寸为(2M+1)*(2N+1)的模板
-<br><img src="http://7xjz3b.com1.z0.glb.clouddn.com/juanji5.jpg" alt=""></p>
-<h3 id="关于卷积核">关于卷积核</h3><h4 id="1-_卷积函数与卷积核：">1. 卷积函数与卷积核：</h4><ol>
-<li>卷积的定义是基于函数的，原始的卷积核模板上所有位置都对应同一个函数。</li>
-<li>实际使用中，我们常使用是某一函数的近似模板，模板上每个位置都有一个常数值。这种模板主要体现形状近似于卷积函数，计算也较为方便。</li>
+<br><img src="/fig/jjdlj/4.jpg" alt=""></p>
+<h3 id="关于卷积模板">关于卷积模板</h3><h4 id="1-_卷积函数与卷积模板：">1. 卷积函数与卷积模板：</h4><ol>
+<li>卷积的定义是基于函数的，原始的卷积模板上所有位置都对应同一个函数。</li>
+<li>实际使用中，我们常使用是某一函数的近似模板，模板上每个位置都有一个常数值。这种模板主要体现在<strong>形状近似于卷积函数</strong>，计算也较为方便。</li>
 </ol>
 <h4 id="2-_模板的特点">2. 模板的特点</h4><ul>
-<li>模板大小：一般卷积近似模板都是奇数个，如$3*3,5*5$等，这样每个模板有一个中心点，也有半径，大小的区别在于<strong>对于单点被模板考虑的像素数的多少</strong>。</li>
+<li>模板大小：一般卷积模板宽度都是奇数，如$3*3,5*5$等，这样每个模板有一个中心点，也有半径，越大的模板<strong>计算的像素数量越多</strong>。</li>
 <li>模板上所有元素的加和：<ul>
-<li>模板上所有元素（即卷积矩阵）的加和不同决定了模板的作用。当加和为1时，卷积计算前后图像的亮度不变。    </li>
+<li>模板上所有元素的加和因模板的作用不同而不同。当加和为1时，卷积计算前后图像的亮度不变。    </li>
 <li>检测边缘的卷积模板的加和往往为0，因为这些模板只是为了检测边缘，只关注像素之间的梯度关系，与像素值无关，无需原来像素点的像素。应用的结果是图像的亮度变得很暗。</li>
 </ul>
 </li>
-<li>这些卷积模板是对连续卷积核函数的数字采样近似，相当于上面用离散点近似连续卷积函数。不同的卷积模板决定了卷积的不同功能：去噪，平滑，凸显某些特征等，不详细叙述。</li>
+<li>近似卷积模板往往是对连续卷积核函数的数字采样近似，相当于上面用离散点近似连续卷积函数。不同的卷积模板决定了卷积的不同功能：去噪，平滑，凸显某些特征等。<ul>
+<li>下图分别为原始图像应用了三个不同卷积模板的效果：
+$$锐化:
+\begin{bmatrix}1&1&1\\1&-7&1\\1&1&1\end{bmatrix}
+运动模糊:
+\begin{bmatrix}1/3&0&0\\0&1/3&0\\0&0&1/3\end{bmatrix}
+竖直边缘:
+\begin{bmatrix}0&0&0\\-1&0&1\\0&0&0\end{bmatrix}
+$$
+
+<img src="/fig/jjdlj/5.jpg" alt=""></li>
 </ul>
+</li>
+</ul>
+<p>上图是用Python写的简单的卷积计算脚本并绘图，使用的暴力计算方法，源代码<a href="https://github.com/RobinROAR/CvProjectOnPy/blob/master/Filter/filterTest.py" target="_blank" rel="external">click</a></p>
 <h4 id="3-_卷积运算的一种加速思想">3. 卷积运算的一种加速思想</h4>
 形如高斯核函数,$\sigma$为窗宽，决定平滑尺度：
 $$
@@ -410,8 +448,8 @@ $$
 
 通过公式可以看出，假设原始图像大小为$A*B$, 模板大小为$M*N$，正常需要计算$A*B*M*N$次，现在转化为计算 $(M+N)*A*B $次，大大减小了运算时间。
 
-<p>如图:<br><img src="http://7xjz3b.com1.z0.glb.clouddn.com/juanji8.jpg" alt=""></p>
-<h2 id="End-">End.</h2><p>对知识的理解上，国内的知乎值得一看，看法往往独到且深入。不过有时百度百科、各种博客等大众性解释有很大的导性，看来普及性和质量往往难以共存。</p>
+<p>如图:<br><img src="/fig/jjdlj/6.jpg" alt=""></p>
+<h2 id="End-">End.</h2><p>对知识的理解上，知乎是不错哒，看法往往独到且深入。有时百度百科、各种博客等大众性解释有很大的导性，看来普及性和质量往往难以共存。</p>
 <p>Robin<br>November 11, 2015 10:57 PM    初写<br>January 7, 2016 9:56 PM   修改卷积公式描述，补充卷积性质<br>January 13, 2016 10:08 AM 增加卷积模板的加速运算。<br>February 22, 2016 3:07 PM 补充图像卷积核的一些特点。</p>
 ]]></content>
     <summary type="html">
@@ -428,12 +466,12 @@ $$
   </entry>
   
   <entry>
-    <title><![CDATA[迁移Hexo博客：GitHub至GitCafe]]></title>
-    <link href="http://robinzheng.com/2015/11/10/%E8%BF%81%E7%A7%BBHexo%E5%8D%9A%E5%AE%A2%EF%BC%9AGitHub%E8%87%B3GitCafe/"/>
-    <id>http://robinzheng.com/2015/11/10/迁移Hexo博客：GitHub至GitCafe/</id>
-    <published>2015-11-10T12:23:39.000Z</published>
-    <updated>2015-11-12T01:45:33.000Z</updated>
-    <content type="html"><![CDATA[<p>昨天着手将博客从GitHub迁移到GitCafe，心里长草多时终于付诸行动。整体过程还算顺利，迁移后功能基本正常，但中间遇到几点零碎问题，现记录如此，一供自己备忘，二可以帮助遇到同样困难的朋友。</p>
+    <title><![CDATA[迁移Hexo博客：GitHub至GitCafe(coding.net)]]></title>
+    <link href="http://robinzheng.com/2015/11/10/%E8%BF%81%E7%A7%BBHexo%E5%8D%9A%E5%AE%A2%EF%BC%9AGitHub%E8%87%B3GitCafe%EF%BC%88coding.net%EF%BC%89/"/>
+    <id>http://robinzheng.com/2015/11/10/迁移Hexo博客：GitHub至GitCafe（coding.net）/</id>
+    <published>2015-11-11T02:23:39.000Z</published>
+    <updated>2016-03-17T11:33:47.000Z</updated>
+    <content type="html"><![CDATA[<p>昨天着手将博客从GitHub迁移到GitCafe，心里长草多时终于付诸行动。整体过程还算顺利，迁移后功能基本正常，但中间遇到几点零碎问题，现记录如此，一供自己备忘，二可以帮助遇到同样困难的朋友。<br><strong>20160317新增部署到coding.net (GitCafe被吃啦，5月1号停止服务，好残酷zZZ)</strong></p>
 <h2 id="引子">引子</h2><p>这里主要谈谈迁移博客的原因，主要来自如下几点：</p>
 <ul>
 <li>搜索引擎检索：无法被百度检索是在Gitpages上部署博客最主要的问题，主要原因是Github服务器默认屏蔽了百度的爬虫。网上的几种解决方案并不触及本质，效果有限。</li>
@@ -467,21 +505,27 @@ $$
 <li>原来在博客文件目录中的CNAME文件需要移除，因为现在是一个项目两处同时更新，两处的CNAME文件指向同一个域名，好像会有点问题。解决方法很简单，只需要把CNAME文件移出根目录下的source目录即可，下此部署时该文件就不会部署到服务器了。</li>
 </ul>
 <p><em>（但博客目录中的CNAME文件的作用我还有点疑惑，是将原本到username.github.io的访问导到CNAME中的地址？这样是否会引起循环？如有赐教不胜感激）</em></p>
-<h3 id="It’s_done！">It’s done！</h3><h2 id="重要Tips">重要Tips</h2><ul>
+<h2 id="重要Tips">重要Tips</h2><ul>
 <li>GitCafe区分大小写，包括url的地址，项目的名称等</li>
 <li>Hexo通过配置文件进行push/pull操作的博客目录是的username.io/.deploy_git/</li>
 <li>GitCafe下使用的分支是gitcafe-pages</li>
 </ul>
-<p>-Robin<br>2015.11.10 夜</p>
+<h3 id="End">End</h3><h3 id="20160317迁移到coding-net">20160317迁移到coding.net</h3><p>GitCafe已经没法push了，5.1日前所有内容都将迁移到coding.net。国内竞争激烈，产业的存活期不稳定，也算是使用国内服务的弊端之一吧。</p>
+<p>转移到Coding.net的步骤和上面基本一致，值得注意的几点：</p>
+<ul>
+<li>coding.net的pages服务需要创建的pages分支名叫coding-pages。</li>
+<li>虽说系统自动把项目迁移从GitCafe迁移过来，但还是要自己绑定公钥。</li>
+</ul>
+<p>希望这家公司靠谱点，能多撑一段时间:)</p>
+<p>-Robin<br>2015.11.10<br>2016.March 17, 2016 7:33 PM  迁移到coding.net</p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<p>昨天着手将博客从GitHub迁移到GitCafe，心里长草多时终于付诸行动。整体过程还算顺利，迁移后功能基本正常，但中间遇到几点零碎问题，现记录如此，一供自己备忘，二可以帮助遇到同样困难的朋友。</p>
-<h2 id="引子">引子</h2><p>这里主要谈谈迁移博客的原因]]>
+    <![CDATA[<p>昨天着手将博客从GitHub迁移到GitCafe，心里长草多时终于付诸行动。整体过程还算顺利，迁移后功能基本正常，但中间遇到几点零碎问题，现记录如此，一供自己备忘，二可以帮助遇到同样困难的朋友。<br><strong>20160317新增部署到coding.net (Git]]>
     </summary>
     
-      <category term="GitCafe" scheme="http://robinzheng.com/tags/GitCafe/"/>
+      <category term="GitCafe/coding.net" scheme="http://robinzheng.com/tags/GitCafe-coding-net/"/>
     
-      <category term="Gitpages" scheme="http://robinzheng.com/tags/Gitpages/"/>
+      <category term="GitPages" scheme="http://robinzheng.com/tags/GitPages/"/>
     
       <category term="hexo" scheme="http://robinzheng.com/tags/hexo/"/>
     
@@ -495,7 +539,7 @@ $$
     <title><![CDATA[scikt-learn示例解析 色彩量化Color Quantization using K-Means]]></title>
     <link href="http://robinzheng.com/2015/10/21/scikt-learn%E7%A4%BA%E4%BE%8B%E8%A7%A3%E6%9E%90%20%E8%89%B2%E5%BD%A9%E9%87%8F%E5%8C%96Color%20Quantization%20using%20K-Means/"/>
     <id>http://robinzheng.com/2015/10/21/scikt-learn示例解析 色彩量化Color Quantization using K-Means/</id>
-    <published>2015-10-21T12:04:03.000Z</published>
+    <published>2015-10-22T01:04:03.000Z</published>
     <updated>2015-11-23T08:04:47.000Z</updated>
     <content type="html"><![CDATA[<p>翻译并解释了scikt-learn官网示例，留作备忘。</p>
 <h1 id="Scikt-learn_Example：Color_Quantization_using_K-Means">Scikt-learn Example：Color Quantization using K-Means</h1><p>通过k-Means进行图像的色彩量化<br>url： <a href="http://scikit-learn.org/stable/auto_examples/cluster/plot_color_quantization.html" target="_blank" rel="external">http://scikit-learn.org/stable/auto_examples/cluster/plot_color_quantization.html</a></p>
@@ -553,7 +597,7 @@ $$
     <title><![CDATA[逻辑回归与计算中的向量化思想]]></title>
     <link href="http://robinzheng.com/2015/08/13/%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92%E4%B8%8E%E8%AE%A1%E7%AE%97%E4%B8%AD%E7%9A%84%E5%90%91%E9%87%8F%E5%8C%96%E6%80%9D%E6%83%B3/"/>
     <id>http://robinzheng.com/2015/08/13/逻辑回归与计算中的向量化思想/</id>
-    <published>2015-08-13T09:36:33.000Z</published>
+    <published>2015-08-13T22:36:33.000Z</published>
     <updated>2016-02-24T08:02:25.000Z</updated>
     <content type="html"><![CDATA[<h2 id="引子">引子</h2><ul>
 <li>这部分总结的有点晚了，不过在熟悉机器学习体系和几个其它模型后，再回过头来看逻辑回归，发现从原理到思想都有比较好的理解。</li>
@@ -709,7 +753,7 @@ x_1^{(m)}e_1,x_2^{(m)}e_2+...+x_n^{(m)}e_n
     <title><![CDATA[谈谈贝叶斯决策]]></title>
     <link href="http://robinzheng.com/2015/07/14/%E7%AE%80%E8%B0%88%E8%B4%9D%E5%8F%B6%E6%96%AF%E5%86%B3%E7%AD%96/"/>
     <id>http://robinzheng.com/2015/07/14/简谈贝叶斯决策/</id>
-    <published>2015-07-14T01:44:57.000Z</published>
+    <published>2015-07-14T14:44:57.000Z</published>
     <updated>2015-12-02T09:45:04.000Z</updated>
     <content type="html"><![CDATA[<p><strong>贝叶斯决策</strong>, 一种常用的分类方法，复杂度低，准确度好，可以和多种分类方法结合。最高的理论正确率令人神往（上自动化所模式识别课中多次强调）。<br>写一写学习贝叶斯方法中的几点理解，一个简单脉络而已，方便回顾，与大家分享。</p>
 <hr>
@@ -783,8 +827,8 @@ x_1^{(m)}e_1,x_2^{(m)}e_2+...+x_n^{(m)}e_n
     <title><![CDATA[理解Linux的环境变量、启动文件和命令目录]]></title>
     <link href="http://robinzheng.com/2015/06/22/%E7%90%86%E8%A7%A3Linux%E7%9A%84%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E3%80%81%E5%90%AF%E5%8A%A8%E6%96%87%E4%BB%B6%E4%B8%8E%E5%91%BD%E4%BB%A4%E7%9B%AE%E5%BD%95/"/>
     <id>http://robinzheng.com/2015/06/22/理解Linux的环境变量、启动文件与命令目录/</id>
-    <published>2015-06-22T03:53:59.000Z</published>
-    <updated>2016-02-26T02:45:14.000Z</updated>
+    <published>2015-06-22T16:53:59.000Z</published>
+    <updated>2016-11-10T17:58:12.000Z</updated>
     <content type="html"><![CDATA[<p>在搭建hadoop 的环境 时配置环境变量的时候遇到些问题，于是系统总结了Linux中的环境变量、启动文件等相关知识发,以供备忘。</p>
 <h2 id="1-_环境变量的作用">1.  环境变量的作用</h2><p>在不同系统中，环境变量总是扮演着相同的角色，安装完新环境，新软件，第一件事总是配置环境变量。</p>
 <h3 id="环境变量_：">环境变量 ：</h3><ul>
@@ -823,8 +867,8 @@ x_1^{(m)}e_1,x_2^{(m)}e_2+...+x_n^{(m)}e_n
 <li><p>查看： </p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> <span class="variable">$PATH</span></span><br><span class="line">/usr/<span class="built_in">local</span>/bin:/usr/bin:/bin:/usr/<span class="built_in">local</span>/games:/usr/games    <span class="comment">#不同值之间由:分割</span></span><br></pre></td></tr></table></figure>
 </li>
-<li><p>添加值，修改：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ PATH=<span class="variable">$PATH</span>:/home/user/<span class="built_in">test</span>  <span class="comment">#添加目录/home/user/test, 只在当前shell有效</span></span><br><span class="line">$ <span class="built_in">export</span> PATH=.:/HOME/eobin:<span class="variable">$PATH</span>     <span class="comment">#单点符在PATH变量中代表当前路径，变量名可以放在末尾</span></span><br></pre></td></tr></table></figure>
+<li><p><strong>添加值，修改</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$  PATH=<span class="variable">$PATH</span>:/home/user/<span class="built_in">test</span>  <span class="comment">#添加目录/home/user/test, 只在当前shell有效</span></span><br><span class="line">$  <span class="built_in">export</span> PATH=.:/HOME/eobin:<span class="variable">$PATH</span>     <span class="comment">#单点符在PATH变量中代表当前路径，变量名可以放在末尾</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <p>通常我们把对于PATH变量的改动<code>写在系统或用户的启动文件中</code>，比如说~/.bashrc中，在登陆系统或者打开新shell时自动加载。</p>
@@ -883,8 +927,8 @@ x_1^{(m)}e_1,x_2^{(m)}e_2+...+x_n^{(m)}e_n
     <title><![CDATA[荆棘谷的青山]]></title>
     <link href="http://robinzheng.com/2015/06/10/%E8%8D%86%E6%A3%98%E8%B0%B7%E7%9A%84%E9%9D%92%E5%B1%B1/"/>
     <id>http://robinzheng.com/2015/06/10/荆棘谷的青山/</id>
-    <published>2015-06-10T10:07:27.000Z</published>
-    <updated>2015-10-26T08:15:15.000Z</updated>
+    <published>2015-06-10T23:07:27.000Z</published>
+    <updated>2016-04-05T11:33:04.000Z</updated>
     <content type="html"><![CDATA[<h2 id="正文">正文</h2><ul>
 <li><p>在GitPages安家了，第一篇博文，又是新的一行＂Hello world＂，一次新的开始．</p>
 </li>
@@ -897,9 +941,9 @@ x_1^{(m)}e_1,x_2^{(m)}e_2+...+x_n^{(m)}e_n
 <li><p>读博路上人渐稀。正值毕业季，可惜这次我是一个孤独的旁观者，只好贪婪的呼吸点弥漫在空气之中的喜悦．前路漫漫，希望能从这篇博文开始，真正的做点事情.</p>
 </li>
 </ul>
-<p> 　　 </p>
-<h2 id="">　　</h2><h2 id="最后附一段Eminem的歌词，烂熟于心，很喜欢：">最后附一段Eminem的歌词，烂熟于心，很喜欢：</h2><blockquote>
-<p>There’s batteries in my Walkman nothing isthe matter with me<br>即使生活充满悲剧，只要我Walkman还有电，困难算什么东西<br>Shit look on the bright side at least Iain’t walking<br>想想开心的事，至少我还有辆单车，是一个老司机<br>I bike ride through the neighborhood of myapartment<br>我嗨皮的驶过邻居家门口<br>Complex on a ten speed which I’ve acquiredparts that I<br>骑着这辆时速十码的组装车<br>Found in the garbage, a frame and put tireson it<br>从垃圾堆里找的部件，然后把轮胎装到架子上<br>Headphones on straight ahead and kids tryto start shit<br>耳机在耳边轰鸣，夹杂着熊孩子们的嘲笑<br>But if this all there is for me life offers<br>如果这是生活赐予我的全部<br>Why bother even tryna put up a fight, it’snonsense<br>那我为何还要与别人争斗？这毫无意义<br>But I think a lightbulb just lit up in my conscience<br>突然有些东西，它照亮了我的脑海<br>What about those rhymes I’ve been jottin’<br>是那些我随手记下的词句<br>They are kinda givin’ me confidence<br>它一直给予我自信和希望<br>Instead of tryna escape through my comics,<br>与其挣扎在这喜剧般的人生<br>Why don’t I just blast a little somethinglike Onyx<br>为何不像Onyx组合一样唱点什么？</p>
+<hr>
+<h2 id="最后附一段Eminem的歌词，很喜欢：">最后附一段Eminem的歌词，很喜欢：</h2><blockquote>
+<p>There’s batteries in my Walkman nothing is the matter with me<br>纵使生活充满坎坷，只要随身听还有电，一切都不是问题<br>Shit look on the bright side at least Iain’t walking<br>想想开心的事吧，至少我还有辆单车，来去自如<br>I bike ride through the neighborhood of myapartment<br>我骑着它经过邻居家门口<br>Complex on a ten speed which I’ve acquiredparts that I<br>这辆时速十码的组装车<br>Found in the garbage, a frame and put tireson it<br>是从垃圾堆里找到部件，拼成车架再装上轮胎<br>Headphones on straight ahead and kids tryto start shit<br>耳机在耳边轰鸣，夹杂着邻居孩子们的对我的指指点点<br>But if this all there is for me life offers<br>如果这就是生活赐予我的全部<br>Why bother even tryna put up a fight, it’snonsense<br>那为何还要与别人争斗？这毫无意义<br>But I think a lightbulb just lit up in my conscience<br>突然有道光，它照亮了我的脑海<br>What about those rhymes I’ve been jottin’<br>是那些我随手记下的词句<br>They are kinda givin’ me confidence<br>它一直给予我自信和希望<br>Instead of tryna escape through my comics,<br>与其挣扎在这喜剧般的人生<br>Why don’t I just blast a little somethinglike Onyx<br>为何不像Onyx乐队一样唱点什么？</p>
 </blockquote>
 <p>Robin<br>2015.6.10   夜</p>
 ]]></content>

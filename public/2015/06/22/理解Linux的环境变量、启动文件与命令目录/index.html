@@ -67,7 +67,7 @@
 环境变量 ：
 存储有关shell会话和工作环境的信息（如Java，hadoop，python等路径，主要是各个bin文件夹的绝对地址）
 变量储存在内存中">
-<meta property="og:updated_time" content="2016-02-26T02:45:14.000Z">
+<meta property="og:updated_time" content="2016-11-10T17:58:12.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="理解Linux的环境变量、启动文件和命令目录">
 <meta name="twitter:description" content="在搭建hadoop 的环境 时配置环境变量的时候遇到些问题，于是系统总结了Linux中的环境变量、启动文件等相关知识发,以供备忘。
@@ -194,7 +194,7 @@
             
               <i class="menu-item-icon fa fa-question-circle fa-fw"></i> <br />
             
-            我的简历
+            Resume
           </a>
         </li>
       
@@ -205,6 +205,16 @@
               <i class="menu-item-icon fa fa-question-circle fa-fw"></i> <br />
             
             Timeline
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-days">
+          <a href="/days" rel="section">
+            
+              <i class="menu-item-icon fa fa-question-circle fa-fw"></i> <br />
+            
+            Days
           </a>
         </li>
       
@@ -286,7 +296,7 @@
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2015-06-22T11:53:59+08:00" content="2015-06-22">
+            <time itemprop="dateCreated" datetime="2015-06-22T11:53:59-05:00" content="2015-06-22">
               2015-06-22
             </time>
           </span>
@@ -370,8 +380,8 @@
 <li><p>查看： </p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> <span class="variable">$PATH</span></span><br><span class="line">/usr/<span class="built_in">local</span>/bin:/usr/bin:/bin:/usr/<span class="built_in">local</span>/games:/usr/games    <span class="comment">#不同值之间由:分割</span></span><br></pre></td></tr></table></figure>
 </li>
-<li><p>添加值，修改：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ PATH=<span class="variable">$PATH</span>:/home/user/<span class="built_in">test</span>  <span class="comment">#添加目录/home/user/test, 只在当前shell有效</span></span><br><span class="line">$ <span class="built_in">export</span> PATH=.:/HOME/eobin:<span class="variable">$PATH</span>     <span class="comment">#单点符在PATH变量中代表当前路径，变量名可以放在末尾</span></span><br></pre></td></tr></table></figure>
+<li><p><strong>添加值，修改</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$  PATH=<span class="variable">$PATH</span>:/home/user/<span class="built_in">test</span>  <span class="comment">#添加目录/home/user/test, 只在当前shell有效</span></span><br><span class="line">$  <span class="built_in">export</span> PATH=.:/HOME/eobin:<span class="variable">$PATH</span>     <span class="comment">#单点符在PATH变量中代表当前路径，变量名可以放在末尾</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <p>通常我们把对于PATH变量的改动<code>写在系统或用户的启动文件中</code>，比如说~/.bashrc中，在登陆系统或者打开新shell时自动加载。</p>
@@ -539,7 +549,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">10</span>
+              <span class="site-state-item-count">11</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -553,7 +563,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">21</span>
+              <span class="site-state-item-count">24</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
@@ -670,7 +680,7 @@
         <div class="copyright" >
   
   &copy;  2015 - 
-  <span itemprop="copyrightYear">2016</span>
+  <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
     <i class="icon-next-heart fa fa-heart"></i>
   </span>

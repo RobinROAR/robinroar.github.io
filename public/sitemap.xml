@@ -2,28 +2,153 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://robinzheng.com/2015/11/17/%E5%8D%B7%E7%A7%AF%E7%9A%84%E7%90%86%E8%A7%A3%E4%B8%8E%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/</loc>
-    <lastmod>2016-02-26T03:03:56.000Z</lastmod>
+    <loc>http://robinzheng.com/days/index.html</loc>
+    <lastmod>2017-02-15T06:21:47.000Z</lastmod>
   </url>
   
   <url>
-    <loc>http://robinzheng.com/about/index.html</loc>
-    <lastmod>2016-02-26T02:51:48.000Z</lastmod>
+    <loc>http://robinzheng.com/days/files/jan2017/01022017.html</loc>
+    <lastmod>2017-02-15T06:20:05.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://robinzheng.com/days/files/oct2016/10202016.html</loc>
+    <lastmod>2017-02-14T05:53:03.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://robinzheng.com/days/files/feb2017/02122017.html</loc>
+    <lastmod>2017-02-13T20:02:57.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://robinzheng.com/days/files/sep2016/09302016.html</loc>
+    <lastmod>2017-02-07T18:40:52.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://robinzheng.com/days/files/jan2017/01162017%20.html</loc>
+    <lastmod>2017-01-19T17:52:49.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://robinzheng.com/days/files/dec2016/12132016.html</loc>
+    <lastmod>2016-12-14T06:38:27.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://robinzheng.com/days/files/oct2016/10062016.html</loc>
+    <lastmod>2016-12-14T06:08:56.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://robinzheng.com/days/files/oct2016/10012016.html</loc>
+    <lastmod>2016-12-12T03:50:54.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://robinzheng.com/days/files/nov2016/11012016.html</loc>
+    <lastmod>2016-11-15T01:33:14.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://robinzheng.com/days/files/nov2016/11082016.html</loc>
+    <lastmod>2016-11-14T05:25:56.000Z</lastmod>
   </url>
   
   <url>
     <loc>http://robinzheng.com/2015/06/22/%E7%90%86%E8%A7%A3Linux%E7%9A%84%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E3%80%81%E5%90%AF%E5%8A%A8%E6%96%87%E4%BB%B6%E4%B8%8E%E5%91%BD%E4%BB%A4%E7%9B%AE%E5%BD%95/</loc>
-    <lastmod>2016-02-26T02:45:14.000Z</lastmod>
+    <lastmod>2016-11-10T17:58:12.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://robinzheng.com/days/files/nov2016/11092016%20.html</loc>
+    <lastmod>2016-11-09T22:53:50.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://robinzheng.com/days/files/sep2016/09282016.html</loc>
+    <lastmod>2016-11-04T04:56:21.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://robinzheng.com/days/files/oct2016/10022016.html</loc>
+    <lastmod>2016-11-03T05:13:19.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://robinzheng.com/days/files/oct2016/10272016.html</loc>
+    <lastmod>2016-11-02T21:07:38.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://robinzheng.com/days/files/oct2016/10292016%20.html</loc>
+    <lastmod>2016-11-01T04:14:24.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://robinzheng.com/days/files/oct2016/10242016.html</loc>
+    <lastmod>2016-10-27T04:14:27.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://robinzheng.com/days/files/sep2016/09272016.html</loc>
+    <lastmod>2016-10-27T04:04:05.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://robinzheng.com/days/files/oct2016/10032016.html</loc>
+    <lastmod>2016-10-24T05:02:01.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://robinzheng.com/days/files/oct2016/10162016.html</loc>
+    <lastmod>2016-10-17T04:34:16.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://robinzheng.com/about/index.html</loc>
+    <lastmod>2016-10-11T16:08:14.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://robinzheng.com/days/files/sep2016/09292016.html</loc>
+    <lastmod>2016-10-04T02:53:12.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://robinzheng.com/timeline/index.html</loc>
+    <lastmod>2016-08-16T14:24:48.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://robinzheng.com/2099/06/16/%5BTop%5DSummery%20and%20Navigation/</loc>
+    <lastmod>2016-06-29T02:56:14.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://robinzheng.com/resume/index.html</loc>
+    <lastmod>2016-06-29T02:32:28.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://robinzheng.com/2015/06/10/%E8%8D%86%E6%A3%98%E8%B0%B7%E7%9A%84%E9%9D%92%E5%B1%B1/</loc>
+    <lastmod>2016-04-05T11:33:04.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://robinzheng.com/2015/11/17/%E5%8D%B7%E7%A7%AF%E7%9A%84%E7%90%86%E8%A7%A3%E4%B8%8E%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/</loc>
+    <lastmod>2016-04-05T11:30:55.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://robinzheng.com/2015/11/10/%E8%BF%81%E7%A7%BBHexo%E5%8D%9A%E5%AE%A2%EF%BC%9AGitHub%E8%87%B3GitCafe%EF%BC%88coding.net%EF%BC%89/</loc>
+    <lastmod>2016-03-17T11:33:47.000Z</lastmod>
   </url>
   
   <url>
     <loc>http://robinzheng.com/2015/08/13/%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92%E4%B8%8E%E8%AE%A1%E7%AE%97%E4%B8%AD%E7%9A%84%E5%90%91%E9%87%8F%E5%8C%96%E6%80%9D%E6%83%B3/</loc>
     <lastmod>2016-02-24T08:02:25.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://robinzheng.com/timeline/index.html</loc>
-    <lastmod>2016-02-22T07:16:54.000Z</lastmod>
   </url>
   
   <url>
@@ -52,11 +177,6 @@
   </url>
   
   <url>
-    <loc>http://robinzheng.com/resume/index.html</loc>
-    <lastmod>2015-11-19T13:08:20.000Z</lastmod>
-  </url>
-  
-  <url>
     <loc>http://robinzheng.com/categories/index.html</loc>
     <lastmod>2015-11-19T12:51:05.000Z</lastmod>
   </url>
@@ -64,16 +184,6 @@
   <url>
     <loc>http://robinzheng.com/tags/index.html</loc>
     <lastmod>2015-11-19T03:17:35.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://robinzheng.com/2015/11/10/%E8%BF%81%E7%A7%BBHexo%E5%8D%9A%E5%AE%A2%EF%BC%9AGitHub%E8%87%B3GitCafe/</loc>
-    <lastmod>2015-11-12T01:45:33.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://robinzheng.com/2015/06/10/%E8%8D%86%E6%A3%98%E8%B0%B7%E7%9A%84%E9%9D%92%E5%B1%B1/</loc>
-    <lastmod>2015-10-26T08:15:15.000Z</lastmod>
   </url>
   
   <url>

@@ -21,6 +21,7 @@ permalink: :year/:month/:day/:title/
 permalink_defaults:
 
 #Next reletive
+swiftype_key: 4BCeYvsMTCWz1QxwXLib
 duoshuo_shortname:    robinzheng
 avatar: /images/avatar.jpg 
 jiathis: true
@@ -36,7 +37,8 @@ social:
 links_title: Links
 # links
 links:
-  Yantao's Blog: http://yantaoblog.info
+  Yantao's Blog: http://yantaoblog.xyz
+  xy: http://ohso.me
   山东大学:  http://www.sdu.edu.cn
   中国科学院研究生院:  http://www.gucas.ac.cn
   CNIC:  http://www.cnic.cn
@@ -72,7 +74,7 @@ highlight:
 
 # Category & Tag
 default_category: uncategorized
-category_map:
+category_map: 
 tag_map:
 
 # Date / Time format
@@ -99,4 +101,5 @@ deploy:
   type: git
   repo: 
     github: git@github.com:robinroar/robinroar.github.io,master
-    gitcafe: git@gitcafe.com:RobinROAR/RobinROAR.git,gitcafe-pages
+    coding:  git@git.coding.net:RobinROAR/RobinROAR.git,coding-pages
+    
