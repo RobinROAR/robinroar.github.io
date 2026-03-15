@@ -1,11 +1,564 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5"><title>Robin Zheng</title><meta name="author" content="Robin Zheng"><link rel="shortcut icon" href="/img/favicon.png"><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><meta name="generator" content="Hexo 5.2.0"></head><body><header id="page_header"><div class="header_wrap"><div id="blog_name"><a class="blog_title" id="site-name" href="/">Robin Zheng</a></div><button class="menus_icon"><div class="navicon"></div></button><ul class="menus_items"><li class="menus_item"><a class="site-page" href="/projects/"> Projects</a></li><li class="menus_item"><a class="site-page" href="/publications/"> Publications</a></li><li class="menus_item"><a class="site-page" href="/cn/"> 中文</a></li></ul></div></header><main id="page_main"><div class="side-card sticky"><div class="card-wrap" itemscope itemtype="http://schema.org/Person"><div class="author-avatar"><img class="avatar-img" src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/profile.png'" alt="avatar"></div><div class="author-discrip"><h3>Robin Zheng</h3><p class="author-bio"></p></div><div class="author-links"><button class="btn m-social-links">Links</button><ul class="social-icons"><li><a class="social-icon" href="https://www.linkedin.com/in/若冰-郑-36749410b/" target="_blank"><i class="fab fa-linkedin" aria-hidden="true"></i></a></li><li><a class="social-icon" href="mailto:zrb915@live.com" target="_blank"><i class="fas fa-envelope" aria-hidden="true"></i></a></li></ul><ul class="social-links"><li><a class="e-social-link" href="https://scholar.google.com/citations?user=S8FmqTUAAAAJ&amp;hl=en" target="_blank"><i class="fas fa-graduation-cap" aria-hidden="true"></i><span>Google Scholar</span></a></li></ul></div></div></div><div class="page" itemscope itemtype="http://schema.org/CreativeWork"><article><h3 id="About-Me"><a href="#About-Me" class="headerlink" title="About Me"></a>About Me</h3><p>I am an AI researcher at <a target="_blank" rel="noopener" href="http://www.moviebook.com.cn/">Moviebook</a>. My research interests include computer vision and deep learning. </p>
-<p>My recent projects focus on GAN and its applications to vision tasks, multi-modal synthesis for virtual avatars, face and 3DMMs. Before join Moviebook, I obtained my Ph.D. from University of Chinese Academy of Sciences, under the supervision of Prof. Baoping Yan. I received my B.E. from Shandong University.</p>
-<h3 id="News"><a href="#News" class="headerlink" title="News"></a>News</h3><ul>
-<li><strong>[2020-08-01]</strong>  Our photoreal virtual anchor solution is applied to CBA Smart Quiz in CCTV Sports, WeChat app “Smart Quiz of CBA” release! <a target="_blank" rel="noopener" href="http://sports.cctv.com/2020/07/31/ARTIKTUwDw9r7gk0Ei47BokI200731.shtml">link!</a></li>
-<li><strong>[2020-06-22]</strong>  Our paper “A Neural Lip-Sync Framework for Synthesizing Photorealistic Virtual News Anchors” has been accpeted by ICPR 2020。<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2002.08700">link!</a></li>
-<li><strong>[2020-05-22]</strong> Our virtual anchor solution is used to build the interactive AI newspaper reading project for People’s Daily . <a target="_blank" rel="noopener" href="https://baijiahao.baidu.com/s?id=1667384501608883676&wfr=spider&for=pc">link!</a></li>
-<li><strong>[2019-11-15]</strong> We release our all-in-one machine for interactive newspaper reading AI anchor at the World 5G Conference in Beijing, in collaboration with Tech Daily.  <a target="_blank" rel="noopener" href="https://t.cj.sina.com.cn/articles/view/2661790332/9ea7b27c01900p5v2?from=tech&sudaref=www.baidu.com&display=0&retcode=0">link!</a></li>
-<li><strong>[2019-07-01]</strong> I join the Deep Innovation Lab at Moviebook , in charge of the development of Virtual Anchor.</li>
-<li><strong>[2019-01-22]</strong> I attend AAAI 19 in Hawaii and present our paper “Exploiting Time-Series Image-to-Image Translation to Expand the Range of Wildlife Habitat Analysis”. <a target="_blank" rel="noopener" href="https://www.aaai.org/ojs/index.php/AAAI/article/view/3862">link!</a></li>
-</ul>
-</article></div></main><div class="nav-wrap"><div class="nav"><button class="site-nav"><div class="navicon"></div></button><ul class="nav_items"><li class="nav_item"><a class="nav-page" href="/projects/"> Projects</a></li><li class="nav_item"><a class="nav-page" href="/publications/"> Publications</a></li><li class="nav_item"><a class="nav-page" href="/cn/"> 中文</a></li></ul></div><div class="cd-top"><i class="fa fa-arrow-up" aria-hidden="true"></i></div></div><footer id="page_footer"><div class="footer_wrap"><div class="copyright">&copy;2020 - 2023 by Robin Zheng</div><div class="theme-info">Powered by <a target="_blank" href="https://hexo.io" rel="nofollow noopener">Hexo</a> & <a target="_blank" href="https://github.com/PhosphorW/hexo-theme-academia" rel="nofollow noopener">Academia Theme</a></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery-pjax@latest/jquery.pjax.min.js"></script><script src="/js/main.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ruobing Zheng</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ==================== Base Styles ==================== */
+        body {
+            margin-left: 15%;
+            margin-right: 15%;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-size: 15px;
+            line-height: 1.5;
+            color: #333;
+            background-color: #fff;
+        }
+
+        /* ==================== Header / Nav ==================== */
+        .header {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 8px;
+        }
+
+        .header a {
+            color: #888;
+            text-decoration: none;
+            font-size: 16px;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .header a:hover {
+            color: #333;
+            background: #f5f5f5;
+        }
+
+        .header a.active {
+            color: #0066cc;
+            font-weight: 500;
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-bottom: 8px;
+            color: #222;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #eee;
+            margin: 12px 0;
+        }
+
+        /* ==================== Profile Section ==================== */
+        .profile-section {
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .profile-image {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 6px;
+        }
+
+        .profile-info {
+            margin-left: 20px;
+            flex: 1;
+        }
+
+        .profile-info p {
+            margin: 4px 0;
+            font-size: 14px;
+        }
+
+        .profile-info a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+
+        .profile-info a:hover {
+            text-decoration: underline;
+        }
+
+        h3 {
+            font-size: 17px;
+            margin: 15px 0 8px 0;
+            color: #222;
+        }
+
+        /* ==================== Research Tags ==================== */
+        .research-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .research-tag {
+            background: #f0f0f0;
+            color: #333;
+            padding: 3px 10px;
+            border-radius: 4px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 1px solid transparent;
+        }
+
+        .research-tag:hover {
+            background: #e0e0e0;
+        }
+
+        .research-tag.active {
+            background: #0066cc;
+            color: white;
+            border-color: #0055aa;
+        }
+
+        /* ==================== Paper Section ==================== */
+        .paper {
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed #e0e0e0;
+        }
+
+        .paper:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .paper-header {
+            display: flex;
+            gap: 15px;
+        }
+
+        .paper-image-link {
+            display: block;
+            width: 200px;
+            height: 120px;
+            flex-shrink: 0;
+            overflow: hidden;
+            border-radius: 4px;
+        }
+
+        .paper-image-link:hover {
+            opacity: 0.85;
+        }
+
+        .paper-image {
+            width: 200px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        .paper-content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .paper-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+            margin-bottom: 6px;
+        }
+
+        .paper-tag {
+            background: #e8f0fe;
+            color: #1a73e8;
+            padding: 2px 8px;
+            border-radius: 3px;
+            font-size: 11px;
+        }
+
+        .paper-title {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 3px;
+        }
+
+        .paper-title a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+
+        .paper-title a:hover {
+            text-decoration: underline;
+        }
+
+        .paper-authors {
+            font-size: 13px;
+            color: #555;
+        }
+
+        .paper-authors .author-name {
+            font-weight: 500;
+        }
+
+        .paper-authors .corresponding {
+            color: #0066cc;
+        }
+
+        /* Highlight for Ruobing Zheng */
+        .paper-authors .self-author {
+            color: #1350c2;
+            font-weight: 500;
+        }
+
+        .paper-venue {
+            font-size: 12px;
+            color: #777;
+            margin-bottom: 4px;
+        }
+
+        .paper-links a {
+            color: #0066cc;
+            text-decoration: none;
+            font-size: 12px;
+            margin-right: 10px;
+        }
+
+        .paper-links a:hover {
+            text-decoration: underline;
+        }
+
+        .paper-links .arxiv { color: #b31b1b; }
+        .paper-links .github { color: #24292e; }
+
+        /* ==================== Responsive ==================== */
+        @media (max-width: 768px) {
+            body {
+                margin-left: 5%;
+                margin-right: 5%;
+            }
+            .profile-section {
+                flex-direction: column;
+            }
+            .profile-image {
+                width: 150px;
+                height: 150px;
+            }
+            .profile-info {
+                margin-left: 0;
+                margin-top: 12px;
+            }
+            .header {
+                flex-wrap: wrap;
+            }
+            .paper-header {
+                flex-direction: column;
+            }
+            .paper-image-link,
+            .paper-image {
+                width: 100%;
+                height: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ==================== Header ==================== -->
+    <div class="header">
+        <a href="index.html" class="active">Home</a>
+        <a href="chinese.html">中文</a>
+    </div>
+
+    <!-- ==================== Profile ==================== -->
+    <h1>Ruobing Zheng</h1>
+    <hr>
+
+    <div class="profile-section">
+        <img src="img/profile.png" alt="Ruobing Zheng" class="profile-image">
+        <div class="profile-info">
+            <p>Currently I'm a Research Scientist at <a href="https://www.inclusion-ai.org/" target="_blank">Inclusion-AI</a>, <a href="https://www.antgroup.com/" target="_blank">Ant Group</a>.</p>
+            <p>My research interests include <strong>Multimodal LLMs</strong>, <strong>Visual Synthesis</strong>, and <strong>Interactive AI Systems</strong>. </p>
+            <p>I earned my Ph.D from the University of Chinese Academy of Sciences, where I was advised by Prof. Baoping Yan and Prof. Miron Livny. I received my B.E. from Shandong University.</p>
+            <p>Before late 2024, my work centered on enterprise digital avatar systems. I have since pivoted to multimodal foundation models, with a dedicated focus on post-training for reasoning. My work has been widely used in <a href="https://www.antafu.com/" target="_blank">AQ</a>, <a href="https://taolive.taobao.com/" target="_blank">Taobao Live</a>,  <a href="https://www.mayibao.cn/" target="_blank">Ant Insurance</a>, <a href="https://www.antfortune.com/" target="_blank">Ant-Wealth</a>, etc.</p>
+            <p>   </p>
+            <p><a href="https://scholar.google.com/citations?user=S8FmqTUAAAAJ&hl=en" target="_blank">Google Scholar</a> &nbsp;|&nbsp; <a href="mailto:zhengruobing.zrb@antgroup.com">Email</a></p>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== Research Interests ==================== -->
+    <h3>Research Interests</h3>
+    <div class="research-tags" id="researchTags">
+        <span class="research-tag" data-filter="all">All</span>
+        <span class="research-tag" data-filter="multimodal-llms">Multimodal LLMs</span>
+        <span class="research-tag" data-filter="reasoning-model">Reasoning Model</span>
+        <span class="research-tag" data-filter="diffusion-models">Diffusion Models</span>
+        <span class="research-tag" data-filter="video-synthesis">Video Synthesis</span>
+        <span class="research-tag" data-filter="neural-rendering">Neural Rendering</span>
+    </div>
+
+    <hr>
+
+    <!-- ==================== Selected Publications ==================== -->
+    <h3>Selected Publications</h3>
+    <div id="publications">
+        <!-- Papers will be rendered by JavaScript -->
+    </div>
+
+    <hr>
+
+    <!-- ==================== Data Configuration ==================== -->
+    <script>
+        // ==================== Configuration ====================
+        // Modify paper data here - each paper is an entry
+        // To modify author highlighting, add "Ruobing Zheng" to the authors list and use lowercase "ruobing zheng" in selfAuthor
+
+        const papersData = [
+        {
+                title: "The Thinking Boundary: Quantifying Reasoning Suitability of Multimodal Tasks via Dual Tuning",
+                authors: ["Ruobing Zheng", "Tianqi Li", "Jianing Li", "Qingpei Guo", "Yi Yuan", "Jingdong Chen"],
+                selfAuthor: "Ruobing Zheng",
+                corresponding: [],
+                first: [0, 1],
+                venue: "arXiv:2603.04415",
+                arxiv: "https://arxiv.org/abs/2603.04415",
+                github: null,
+                project: "https://digital-avatar.github.io/ai/ThinkingBoundary/",
+                tags: ["multimodal-llms", "reasoning-model"],
+                image: "img/thinkingboundary.png",
+                imageLink: "https://raw.githubusercontent.com/digital-avatar/digital-avatar.github.io/main/ai/ThinkingBoundary/asserts/fig/scatter_plot_final_manual.png"
+            },    
+        
+            {
+                title: "Ming-Flash-Omni: A Sparse, Unified Architecture for Multimodal Perception and Generation",
+                authors: ["Inclusion AI"],
+                selfAuthor: null,
+                corresponding: [],
+                first: [],
+                venue: "Technical Report | arXiv:2510.24821",
+                arxiv: "https://arxiv.org/abs/2510.24821",
+                github: "https://github.com/inclusionAI/Ming",
+                model: "https://huggingface.co/inclusionAI/Ming-flash-omni-2.0",
+                project: "https://github.com/inclusionAI/Ming",
+                tags: ["multimodal-llms"],
+                image: "img/ming.png",
+                imageLink: "https://mdn.alipayobjects.com/huamei_xg7bx2/afts/img/c1qcRIb3qH4AAAAAgCAAAAgADhHHAQFr/fmt.avif"
+            },
+            
+            {
+                title: "HumanSense: From Multimodal Perception to Empathetic Context-Aware Responses through Reasoning MLLMs",
+                authors: ["Zheng Qin", "Ruobing Zheng", "Yabing Wang", "Tianqi Li", "Yi Yuan", "Jingdong Chen", "Le Wang"],
+                selfAuthor: "Ruobing Zheng",
+                corresponding: [6],
+                first: [0,1],
+                venue: "AAAI 2026 | arXiv:2508.10576",
+                arxiv: "https://arxiv.org/abs/2508.10576",
+                github: "https://github.com/antgroup/HumanSense",
+                model: "https://huggingface.co/antgroup/HumanSense_Omni_Reasoning",
+                project: "https://digital-avatar.github.io/ai/HumanSense/",
+                tags: ["multimodal-llms", "reasoning-model"],
+                image: "img/humansense.png",
+                imageLink: "https://raw.githubusercontent.com/digital-avatar/digital-avatar.github.io/main/ai/HumanSense/asserts/figure5.png"
+            },
+            {
+                title: "M2-Reasoning: Empowering MLLMs with Unified General and Spatial Reasoning",
+                authors: ["Inclusion AI"],
+                selfAuthor: null,
+                corresponding: [],
+                first: [],
+                venue: "Technical Report | arXiv:2507.08306",
+                arxiv: "https://arxiv.org/abs/2507.08306",
+                github: "https://github.com/inclusionAI/M2-Reasoning",
+                model: "https://huggingface.co/inclusionAI/M2-Reasoning",
+                project: "https://github.com/inclusionAI/M2-Reasoning",
+                tags: ["multimodal-llms", "reasoning-model"],
+                image: "img/m2reasoning.png",
+                imageLink: "https://raw.githubusercontent.com/inclusionAI/M2-Reasoning/main/assets/teaser.png"
+            },
+            {
+                title: "VersaAnimator: Versatile Multimodal Controls for Expressive Talking Human Animation",
+                authors: ["Zheng Qin", "Ruobing Zheng", "Yabing Wang", "Tianqi Li", "Zixin Zhu", "Sanping Zhou", "Ming Yang", "Le Wang"],
+                selfAuthor: "Ruobing Zheng",
+                corresponding: [7],
+                first: [0,1],
+                venue: "ACM MM 2025 | arXiv:2503.08714",
+                arxiv: "https://arxiv.org/abs/2503.08714",
+                github: null,
+                project: "https://digital-avatar.github.io/ai/VersaAnimator/",
+                tags: ["diffusion-models", "video-synthesis"],
+                image: "img/versaanimator.png",
+                imageLink: "https://raw.githubusercontent.com/digital-avatar/digital-avatar.github.io/main/ai/VersaAnimator/asserts/1.png"
+            },
+            {
+                title: "Ditto: Motion-Space Diffusion for Controllable Realtime Talking Head Synthesis",
+                authors: ["Tianqi Li", "Ruobing Zheng", "Minghui Yang", "Jingdong Chen", "Ming Yang"],
+                selfAuthor: "Ruobing Zheng",
+                corresponding: [1],
+                first: null,
+                venue: "ACM MM 2025 | arXiv:2411.19509",
+                arxiv: "https://arxiv.org/abs/2411.19509",
+                github: "https://github.com/antgroup/ditto-talkinghead",
+                project: "https://digital-avatar.github.io/ai/Ditto/",
+                tags: ["diffusion-models", "neural-rendering", "video-synthesis"],
+                image: "https://digital-avatar.github.io/ai/Ditto/asserts/videos/acmmm25_mfp1949_ditto_mpv_v250925.mp4",
+                imageLink: "https://digital-avatar.github.io/ai/Ditto/asserts/videos/acmmm25_mfp1949_ditto_mpv_v250925.mp4"
+            },
+            {
+                title: "LokiTalk: Learning Fine-Grained and Generalizable Correspondences to Enhance NeRF-based Talking Head Synthesis",
+                authors: ["Tianqi Li", "Ruobing Zheng", "Bonan Li", "Zicheng Zhang", "Meng Wang", "Jingdong Chen", "Ming Yang"],
+                selfAuthor: "Ruobing Zheng",
+                corresponding: [1],
+                first: null,
+                venue: "arXiv:2411.19525",
+                arxiv: "https://arxiv.org/abs/2411.19525",
+                github: null,
+                project: "https://digital-avatar.github.io/ai/LokiTalk/",
+                tags: ["neural-rendering"],
+                image: "img/lokitalk.png",
+                imageLink: "https://raw.githubusercontent.com/digital-avatar/digital-avatar.github.io/main/ai/LokiTalk/asserts/rsdf.png"
+            },
+            {
+                title: "DynTet: Learning Dynamic Tetrahedra for High-Quality Talking Head Synthesis",
+                authors: ["Zicheng Zhang", "Ruobing Zheng", "Chen Liu", "Jianxiong Xiao", "Jean Oh", "Ming Yang"],
+                selfAuthor: "Ruobing Zheng",
+                corresponding: [1],
+                first: null,
+                venue: "CVPR 2024 | arXiv:2402.17364",
+                arxiv: "https://arxiv.org/pdf/2402.17364.pdf",
+                github: "https://github.com/zhangzc21/DynTet",
+                video: "https://youtu.be/Hahv5jy2w_E",
+                project: "https://github.com/zhangzc21/DynTet",
+                tags: ["neural-rendering"],
+                image: "img/dyntet.png",
+                imageLink: "https://raw.githubusercontent.com/zhangzc21/DynTet/main/assets/pipeline.png"
+            }
+        ];
+
+        // Tag display names mapping
+        const tagNames = {
+            "multimodal-llms": "Multimodal LLMs",
+            "reasoning-model": "Reasoning Model",
+            "diffusion-models": "Diffusion Models",
+            "video-synthesis": "Video Synthesis",
+            "neural-rendering": "Neural Rendering"
+        };
+
+        // ==================== Render Papers ====================
+        function renderPapers(papers) {
+            const container = document.getElementById('publications');
+            container.innerHTML = papers.map(paper => {
+                // Format authors with self-author highlighting
+                let authorWithMarks = paper.authors.map((author, idx) => {
+                    let mark = '';
+                    if (paper.first && paper.first.includes(idx)) {
+                        mark += '<sup>*</sup>';
+                    }
+                    if (paper.corresponding && paper.corresponding.includes(idx)) {
+                        mark += '<sup>†</sup>';
+                    }
+                    // Highlight self author
+                    let authorClass = '';
+                    if (paper.selfAuthor && author.toLowerCase().includes(paper.selfAuthor.toLowerCase())) {
+                        authorClass = ' self-author';
+                    }
+                    return `<span class="author-name${authorClass}">${author}</span>${mark}`;
+                }).join(', ');
+
+                // Format tags
+                const tagsHtml = paper.tags.map(tag =>
+                    `<span class="paper-tag">${tagNames[tag] || tag}</span>`
+                ).join('');
+
+                // Format links
+                let linksHtml = '';
+                if (paper.arxiv) {
+                    linksHtml += `<a href="${paper.arxiv}" class="arxiv">[PDF]</a>`;
+                }
+                if (paper.github) {
+                    linksHtml += `<a href="${paper.github}" class="github">[Code]</a>`;
+                }
+                if (paper.model) {
+                    linksHtml += `<a href="${paper.model}">[Model]</a>`;
+                }
+                if (paper.video) {
+                    linksHtml += `<a href="${paper.video}">[Video]</a>`;
+                }
+                if (paper.project) {
+                    linksHtml += `<a href="${paper.project}">[Project]</a>`;
+                }
+
+                // Render image/video with link
+                let mediaHtml;
+                const imageTarget = paper.imageLink || paper.image;
+                if (paper.image && paper.image.endsWith('.mp4')) {
+                    mediaHtml = `<a href="${imageTarget}" target="_blank" class="paper-image-link">
+                        <video class="paper-image" controls muted loop playsinline>
+                            <source src="${paper.image}" type="video/mp4">
+                        </video>
+                    </a>`;
+                } else {
+                    mediaHtml = `<a href="${imageTarget}" target="_blank" class="paper-image-link">
+                        <img class="paper-image" src="${paper.image}" alt="${paper.title}">
+                    </a>`;
+                }
+
+                return `
+                    <div class="paper" data-tags="${paper.tags.join(' ')}">
+                        <div class="paper-header">
+                            ${mediaHtml}
+                            <div class="paper-content">
+                                <div class="paper-tags">${tagsHtml}</div>
+                                <div class="paper-title">
+                                    <a href="${paper.project || paper.arxiv || '#'}" target="_blank">${paper.title}</a>
+                                </div>
+                                <div class="paper-authors">${authorWithMarks}</div>
+                                <div class="paper-venue">${paper.venue}</div>
+                                <div class="paper-links">${linksHtml}</div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // ==================== Filter Functionality ====================
+        const researchTags = document.querySelectorAll('.research-tag');
+        let currentFilter = 'all';
+
+        researchTags.forEach(tag => {
+            tag.addEventListener('click', () => {
+                // Update active state
+                researchTags.forEach(t => t.classList.remove('active'));
+                tag.classList.add('active');
+
+                currentFilter = tag.dataset.filter;
+
+                // Filter papers
+                const papers = document.querySelectorAll('.paper');
+                papers.forEach(paper => {
+                    if (currentFilter === 'all') {
+                        paper.style.display = 'block';
+                    } else {
+                        const paperTags = paper.dataset.tags.split(' ');
+                        if (paperTags.includes(currentFilter)) {
+                            paper.style.display = 'block';
+                        } else {
+                            paper.style.display = 'none';
+                        }
+                    }
+                });
+            });
+        });
+
+        // ==================== Initialize ====================
+        renderPapers(papersData);
+    </script>
+
+</body>
+</html>
